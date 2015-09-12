@@ -1,0 +1,51 @@
+<% if can? :admin, current_user %>
+<h4>show all contacts information</h4>
+<br>
+<div class="well well-lg">
+<div class="row">
+    <div class="col-md-4">
+        <%= form_tag contacts_path, method: :get do %>
+          <%= search_field_tag :search, params[:search] %>
+          <%= submit_tag " Search ", class: "btn btn-primary " %>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; &nbsp; Order_By&nbsp; &nbsp; <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Order By Id", contacts_path(search: params[:search], order: "id") %></li>
+            <li><%= link_to "order by name", contacts_path(search: params[:search], order: "name")%></li>
+            <li><%= link_to "order by created_at", contacts_path(search: params[:search], order: "created_at")%></li>
+            <li><%= link_to "order by done", contacts_path(search: params[:search], order: "done")%></li>
+          </ul>
+      </div>
+    </div>
+</div>
+<!-- </div> -->
+
+    <table class="table table-striped">
+      <tr >
+        <th><h4>id</h4></th>
+        <th><h4>name</h4></th>
+        <th><h4>email</h4></th>
+        <th><h4>message</h4></th>
+        <th><h4>created_at</h4></th>
+        <th><h4>done?</h4></th>
+      </tr>
+      <% @contacts.each do |contact| %>
+      <tr>
+        <td><small><%= contact.id %></small></td>
+        <td><small><%= contact.name %></small></td>
+        <td><small><%= contact.email %></small></td>
+        <td><small><%= contact.message %></small></td>
+        <td><small><%= contact.created_at %></small></td>
+        <td><small>
+          <% if contact.done? %>
+            <%= link_to "Done!!!","", class:"btn btn-success" %>
+          <% else %>
+            <%= link_to "U-Done", contact_path(contact), method: :put,class:"btn btn-primary" %>
+          <% end %>
+        </small></td>
+      </tr>
+      <% end %>
+    </table>
+<% end %>

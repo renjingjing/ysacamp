@@ -1,0 +1,77 @@
+<%= form_for @user, url: user_path do |f| %>
+  <div class="form-group">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :parent_name %>
+    <%= f.text_field :parent_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email1 %>
+    <%= f.email_field :email1, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email2 %>
+    <%= f.email_field :email2, class: "form-control" %>
+  </div>
+  <% if @user.persisted? %>
+    <div class="form-group">
+      <%= f.label :current_password, "Enter your current password to save changes" %>
+      <%= f.password_field :current_password, class:"form_control" %>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :cell_phone %>
+    <%= f.text_field :cell_phone, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :gender %>
+    <%= f.text_field :gender, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :grade %>
+    <%= f.text_field :grade, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :age %>
+    <%= f.text_field :age, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :class%>
+    <%= f.text_field :school, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address %>
+    <%= f.text_field :address, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :RTime %>
+    <%= f.text_field :registration_time, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :note %>
+    <%= f.text_field :note, class: "form-control" %>
+  </div>
+  <% if can? :adimn, current_user %>
+  <div class="form-group">
+    <%= f.label :student_id %>
+    <%= f.text_field :student_id, class: "form-control" %>
+  </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.submit  class: "btn btn-primary" %>
+  </div>
+<% end %>

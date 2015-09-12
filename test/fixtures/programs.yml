@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_name: MyString
+  level: MyString
+  class_amount: MyString
+  time_info: MyString
+  description: MyString
+  max_students: MyString
+
+two:
+  course_name: MyString
+  level: MyString
+  class_amount: MyString
+  time_info: MyString
+  description: MyString
+  max_students: MyString

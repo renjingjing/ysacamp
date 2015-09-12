@@ -1,0 +1,38 @@
+<h1>See student information details</h1>
+<% if @user == current_user %>
+  <h1><%= @user.full_name %></h1>
+  <hr>
+  <table>
+    <tr>
+      <th>Student Id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Age</th>
+      <th>Parent Name</th>
+      <th>Email</th>
+      <th>Cell Phone</tH>
+      <th>Address</th>
+      <th>Level</th>
+      <th>Coures</th>
+      <th>Note</th>
+    </th>
+    <tr>
+      <td><%= @user.student_id %></td>
+      <td><%= @user.first_name %></td>
+      <td><%= @user.last_name %></td>
+      <td><%= @user.age %></td>
+      <td><%= @user.parent_name %></td>
+      <td><%= @user.email1 %></td>
+      <td><%= @user.cell_phone %></td>
+      <td><%= @user.address %></td>
+      <td><%= @user.grade %></td>
+      <td><%= @user.school %></td>
+      <td><%= @user.note %></td>
+      </td>
+    </td>
+  </table>
+<% end %>
+<%# this link to the edit page of the user that shows a form to edit the values already saved %>
+<%#= link_to (@user.locked ? "Lock" : "Un-lock"),
+            user_path(@user, {user: {locked: !@user.locked}}),
+            class: "btn btn-warning", method: :patch %>
