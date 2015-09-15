@@ -17,4 +17,19 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     redirect_to new_session_path, alert: "Please sign in" unless user_signed_in?
   end
+
+  def admin_user!
+    if user_signed_in?
+      redirect_to root_path, alert: "Can't Access!" unless current_user.admin
+    else
+      redirect_to root_path, alert: "Can't Access!"
+    end
+  end
+
+  def admin_user?
+    current_user.admin == true
+  end
+  helper_method :admin_user?
+
+
 end

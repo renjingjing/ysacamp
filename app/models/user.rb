@@ -6,6 +6,9 @@ validates :email1, presence: {message: "must be present"},
 # uniqueness: true, # there are children belong to one family
           format: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
+has_many  :user_course_units, dependent: :destroy
+has_many  :registed_units, through: :user_course_units,source: :course_unit
+
 def self.recent
   order(:created_at).reverse_order
 end

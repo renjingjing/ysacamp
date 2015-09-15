@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @classtimetable.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @classtimetable.end_time %>
+</p>
+
+<p>
+  <strong>Start day:</strong>
+  <%= @classtimetable.start_day %>
+</p>
+
+<p>
+  <strong>End day:</strong>
+  <%= @classtimetable.end_day %>
+</p>
+
+<p>
+  <strong>Weekday:</strong>
+  <%= @classtimetable.weekday %>
+</p>
+
+<p>
+  <strong>Month:</strong>
+  <%= @classtimetable.month %>
+</p>
+
+<p>
+  <strong>Times_per_week:</strong>
+  <%= @classtimetable.times_per_week %>
+</p>
+
+<%= link_to 'Edit', edit_classtimetable_path(@classtimetable) %> |
+<%= link_to 'Back', classtimetables_path %>

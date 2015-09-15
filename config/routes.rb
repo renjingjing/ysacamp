@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :classtimetables
   resources :kinds
   resources :course_resources
   resources :course_units

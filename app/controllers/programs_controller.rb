@@ -6,7 +6,7 @@ class ProgramsController < ApplicationController
   def index
     @programs = Program.all
     if params[:search]
-        @programs = Program.search(params[:search]).order("#{params[:order]}")
+        @programs = Program.search(params[:search])
     else
         @programs = Program.all.order("#{params[:id]}")
     end
@@ -74,6 +74,6 @@ class ProgramsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def program_params
-      params.require(:program).permit(:course_name, :level, :class_amount, :time_info, :description, :max_students)
+      params.require(:program).permit(:program_name, :description)
     end
 end

@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>
+<% if can? :admin,current_user %>
+  <%= link_to 'Show', @course %> |
+  <%= link_to 'All Courses', courses_path %>
+<% end %>

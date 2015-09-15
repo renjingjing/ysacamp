@@ -1,6 +1,6 @@
 class CourseUnitsController < ApplicationController
   before_action :set_course_unit, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!,only: [:index, :show]
   # GET /course_units
   # GET /course_units.json
   def index

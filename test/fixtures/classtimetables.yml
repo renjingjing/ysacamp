@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2015-09-13 20:10:35
+  end_time: 2015-09-13 20:10:35
+  day: 2015-09-13 20:10:35
+  weekday: MyString
+  month: MyString
+  year: MyString
+
+two:
+  start_time: 2015-09-13 20:10:35
+  end_time: 2015-09-13 20:10:35
+  day: 2015-09-13 20:10:35
+  weekday: MyString
+  month: MyString
+  year: MyString

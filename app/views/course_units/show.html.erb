@@ -1,9 +1,17 @@
 <p id="notice"><%= notice %></p>
-
 <p>
+  <% courses=@course_unit.courses.all %>
+  <% if courses!= nil %>
+      <% courses.each do |course| %>
+      <h4>Course: <%= link_to course.name,courses_path(search: course.name, order: "id") %></nobr></h4>
+      <% end %>
+  <% end %>
+</p>
+
+<h4>
   <strong>Title:</strong>
   <%= @course_unit.title %>
-</p>
+</h4>
 
 <p>
   <strong>Description:</strong>
@@ -11,9 +19,16 @@
 </p>
 
 <p>
-  <strong>Note:</strong>
-  <%= @course_unit.note %>
+  <strong>Class Times:</strong>
+  <%= @course_unit.class_times %>
 </p>
 
-<%= link_to 'Edit', edit_course_unit_path(@course_unit) %> |
-<%= link_to 'Back', course_units_path %>
+<p>
+  <strong>Class Hour(s):</strong>
+  <%= @course_unit.class_hour %>
+</p>
+
+<% if can? :admin,current_user %>
+  <%= link_to 'Edit', edit_course_unit_path(@course_unit) %> |
+  <%= link_to 'Back', course_units_path %>
+<% end %>

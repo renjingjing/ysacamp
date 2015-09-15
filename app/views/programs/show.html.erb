@@ -1,33 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Course name:</strong>
-  <%= @program.course_name %>
-</p>
-
-<p>
-  <strong>Level:</strong>
-  <%= @program.level %>
-</p>
-
-<p>
-  <strong>Class amount:</strong>
-  <%= @program.class_amount %>
-</p>
-
-<p>
-  <strong>Time info:</strong>
-  <%= @program.time_info %>
+  <strong>Program name:</strong>
+  <%= @program.program_name %>
 </p>
 
 <p>
   <strong>Description:</strong>
   <%= @program.description %>
-</p>
-
-<p>
-  <strong>Max students:</strong>
-  <%= @program.max_students %>
 </p>
 
 <%= link_to 'Edit', edit_program_path(@program) %> |

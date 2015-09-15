@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 before_action :authenticate_user!, only: [:edit, :update]
+PER_PAGE = 10
 def new
 @user = User.new
 end
@@ -10,11 +11,11 @@ def index
 # puts @users
 # print ">>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 if params[:search]
-    @users = User.search(params[:search]).order("#{params[:order]}")
+    @users = User.search(params[:search]).order("#{params[:order]}").page(params[:page]).per(PER_PAGE)
     # .page(params[:page])
     # .per(PER_PAGE)
   else
-    @users = User.order("#{params[:order]}")
+    @users = User.order("#{params[:order]}").page(params[:page]).per(PER_PAGE)
     # .page(params[:page])
     # .per(PER_PAGE)
   end

@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require bootstrap-datetimepicker
+//= require pickers
+// You may include any languages (optional)
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .

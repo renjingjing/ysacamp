@@ -1,10 +1,15 @@
 class CoursesController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :update]
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-
   # GET /courses
   # GET /courses.json
   def index
     @courses = Course.all
+    if params[:search]
+        @courses = Course.search(params[:search])
+    else
+        @courses = Course.all.order("#{params[:id]}")
+    end
   end
 
   # GET /courses/1
@@ -69,6 +74,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :description, :note)
+      params.require(:course).permit(:name, :description, :class_times,:class_hour)
     end
 end

@@ -24,14 +24,17 @@
         <td><%= course_resource.resource_file %></td>
         <td><%= course_resource.kind_id %></td>
         <td><%= course_resource.note %></td>
-        <td><%= link_to 'Show', course_resource %></td>
-        <td><%= link_to 'Edit', edit_course_resource_path(course_resource) %></td>
-        <td><%= link_to 'Destroy', course_resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :adimn, current_user %>
+          <td><%= link_to 'Show', course_resource %></td>
+          <td><%= link_to 'Edit', edit_course_resource_path(course_resource) %></td>
+          <td><%= link_to 'Destroy', course_resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Course resource', new_course_resource_path %>
+<% if can? :adimn, current_user %>
+    <%= link_to 'New Course resource', new_course_resource_path %>
+<% end %>
