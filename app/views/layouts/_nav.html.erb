@@ -65,9 +65,9 @@
         <li role="separator" class="divider"></li>
         <li><%= link_to "Course registration", programs_path %></li>
       </ul>
-          <li><%= link_to "Courses",courses_path %></li>
-          <li><%= link_to "News" %></li>
-          <li><%= link_to "Blog" %></li>
+          <!-- <li><%#= link_to "Courses",courses_path %></li>
+          <li><%#= link_to "News" %></li>
+          <li><%#= link_to "Blog" %></li> -->
         <% if can? :admin, current_user %>
           <li><%= link_to "Contact Us", contacts_path %></li>
         <% else %>
@@ -124,10 +124,11 @@
       <% if user_signed_in? %>
         <li><%= link_to edit_user_path(current_user) do %>
             Hello<%= current_user.first_name%>
-            <% end %>
+            <% end %></li>
         <li><%= link_to "Sign out", sessions_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Sign in", new_session_path %></li>
+        <li><%= link_to "Sign in with Twitter", sign_in_with_twitter_path %></li>
         <li><%= link_to "Sign up", new_user_path %></li>
       <% end %>
     </ul>

@@ -1,0 +1,18 @@
+<h1>edit attendance</h1>
+<%=simple_form_for [@user, attendance],method: :put,remote:true do |f| %>
+      <%= f.input :attendanted_record %>
+      <%= f.input :date_enrollment %>
+      <%= f.input :class_credit %>
+      <%= f.input :postpone %>
+      <%= f.input :finished %>
+      <%= f.input :note %>
+      <%= f.input :course_unit_id %>
+      <%#= f.input :classtimetable,collection: find_classtimetables(@user,attendance).map {|x| x.id}, :include_blank => "Anything", input_html: { multiple: true } %>
+      <%#= f.input a: :course_unit_id %>
+      <%  @user.registed_units.map do |registed_unit| %>
+        <%= f.input :course_unit,collection: registed_unit.title %>
+        <%= f.input :classtimetable, collection: find_class_info(registed_unit) %>
+      <% end %>
+
+      <%= f.submit :submit, class: "btn btn-success" %>
+  <% end %>

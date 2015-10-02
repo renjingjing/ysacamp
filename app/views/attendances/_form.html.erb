@@ -1,0 +1,16 @@
+<%=simple_form_for [@user, @attendance||=Attendance.new],remote: true do |f| %>
+      <%#= f.input :attendanted_record %>
+      <%#= f.input :date_enrollment %>
+      <%#= f.input :class_credit %>
+      <%#= f.input :postpone %>
+      <%#= f.input :finished %>
+      <%= f.input       :attendanted_record,collection: Course.all.map {|c| c.name} %>
+      <%= f.association :course_unit,collection: CourseUnit.all.map {|c|
+                        x="#{c.id};"+"  "+"TITLE:#{c.title};"+"  "+"UNIT_ID:#{c.id};"+"  "+"COURSE:#{c.course.name}" } %>
+      <%= f.association :classtimetable,as: :radio_buttons,
+                        collection: Classtimetable.all.map {|c|
+                        x="#{c.id};"+"  "+"#{formatted_time(c.start_time)};"+"  "+"#{formatted_date(c.start_day)};"+"  "+"#{c.course_unit.title};"+"  "+"#{c.course_unit.course.name};"+"  "+"#{c.course_unit.id}"},
+                        include_blank: true,input_html: { multiple: false } %>
+      <%= f.input       :note %>
+      <%= f.submit      :submit, class: "btn btn-primary",id:"submit_new_attendance" %>
+  <% end %>

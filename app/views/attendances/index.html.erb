@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Attendances</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date attended</th>
+      <th>Postpone</th>
+      <th>CourseUnitEnrolled</th>
+      <th>Note</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attendances.each do |attendance| %>
+      <tr>
+        <td><%= attendance.date_attended %></td>
+        <td><%= attendance.postpone %></td>
+        <td><%= get_attendance_course_unit(attendance.course_unit_id) %></td>
+        <td><%= attendance.note %></td>
+        <td><%= link_to 'Show', attendance %></td>
+        <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
+        <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attendance', new_attendance_path %>
+
+<% if can? :admin, current_user %>
+    <h2>select students' attendance tables</h2>
+
+    <div class="well well-lg">
+    <div class="row">
+        <div class="col-md-4">
+          <%= form_tag attendances_path, method: :get do %>
+            <%= search_field_tag :search, params[:search] %>
+            <%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
+          <% end %>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp; &nbsp; Order_By&nbsp; &nbsp; <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><%= link_to "order by user_id", attendances_path(search: params[:search], order: "user_id")%></li>
+              <li><%= link_to "order by course_unit_id", attendances_path(search: params[:search], order: "course_unit_id") %></li>
+            </ul>
+        </div>
+    </div>
+    </div>

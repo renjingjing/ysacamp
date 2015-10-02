@@ -1,0 +1,6 @@
+alert("A new attendance created!");
+$("#new_attendance_close").click();
+$(".attendances").prepend("<%= j render 'attendance', attendance: @attendance %>");
+// generate a new variable to render new attendance from(clear the field of the form)
+<% @attendance = Attendance.new %>
+$("#new_attendance").replaceWith("<%= j render 'form' %>");

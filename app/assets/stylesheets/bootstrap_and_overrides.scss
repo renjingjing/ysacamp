@@ -1,6 +1,8 @@
 @import "font-awesome";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+// @import "chosen";
+// @import "bootstrap-chosen";
 .carousel-control:hover,
 .carousel-control:focus {
   color: #000;
@@ -77,6 +79,13 @@
   height: auto;
 }
 
+#editattendance{
+  display: none;
+}
+
+.classtimetable_init_show_disable{
+
+}
 
 .dropdown-submenu{position:relative;}
 .dropdown-submenu>.dropdown-menu{top:0;left:100%;max-width:260px;margin-top:-6px;margin-right:-3px;-webkit-border-radius:6px 6px 6px 6px;-moz-border-radius:6px 6px 6px 6px;border-radius:6px 6px 6px 6px;}

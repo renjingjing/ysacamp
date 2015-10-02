@@ -5,12 +5,13 @@
 <table>
   <thead>
     <tr>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Start day</th>
-      <th>End day</th>
-      <th>Weekday</th>
-      <th>Month</th>
+      <th>ClassStartTime</th>
+      <th>ClassEndTime</th>
+      <th>MinsPerClass</th>
+      <th>CourseUnitStartDay</th>
+      <th>CourseUnitEndDay</th>
+      <th>CourseUnitClassTime</th>
+      <th>Weekdays</th>
       <th>times_per_week</th>
       <th colspan="3">Edit</th>
     </tr>
@@ -19,13 +20,15 @@
   <tbody>
     <% @classtimetables.each do |classtimetable| %>
       <tr>
+        <!-- formatted_time in application-helpers only get time of a day -->
         <td><%= formatted_time(classtimetable.start_time) %></td>
-        <td><%= formatted_time(classtimetable.end_time) %></td>
+        <td><%= formatted_time(classtimetable.start_time+(classtimetable.minutes_per_class/60).hours) %></td>
+        <td><%= classtimetable.minutes_per_class %>&nbsp; tmins</td>
         <td><%= formatted_date(classtimetable.start_day) %></td>
-        <td><%= formatted_date(classtimetable.end_day) %></td>
-        <td><%= classtimetable.weekday %></td>
-        <td><%= classtimetable.month %></td>
-        <td><%= classtimetable.times_per_week %></td>
+        <td><%= formatted_date(get_end_day(classtimetable.start_day,classtimetable.weekdays,classtimetable.unit_class_times)) %></td>
+        <td><%= classtimetable.unit_class_times %>&nbsp; times/unit</td>
+        <td><%= show_weekdays(classtimetable.weekdays) %></td>
+        <td><%= times_perweek(classtimetable.weekdays) %>&nbsp; tclasses/week</td>
         <td><%= link_to 'Show', classtimetable %></td>
         <td><%= link_to 'Edit', edit_classtimetable_path(classtimetable) %></td>
         <td><%= link_to 'Destroy', classtimetable, method: :delete, data: { confirm: 'Are you sure?' } %></td>

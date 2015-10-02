@@ -19,13 +19,8 @@
 </p>
 
 <p>
-  <strong>Class Times:</strong>
-  <%= @course_unit.class_times %>
-</p>
-
-<p>
-  <strong>Class Hour(s):</strong>
-  <%= @course_unit.class_hour %>
+  <strong>Note:</strong>
+  <%= @course_unit.note %>
 </p>
 
 <% if can? :admin,current_user %>
