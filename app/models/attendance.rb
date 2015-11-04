@@ -24,6 +24,11 @@ class Attendance < ActiveRecord::Base
     where( ["user_id ILIKE :term OR course_unit_id ILIKE :term OR finished ILIKE :term OR postpone ILIKE :term", { term: search_term }] )
   end
 
+  def self.search_by_first_name( item )
+    search_term = User.find_by_first_name item
+    where(user_id: search_term.id)
+  end
+
   def self.search_multiple( words )
     query   = []
     terms   = []

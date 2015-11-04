@@ -1,7 +1,13 @@
 <% if user_signed_in? %>
   <h3><%= @user.full_name %> information detail.</h3>
-  <hr>
-  <table >
+  <div class="container">
+      <%  @user.registed_units.each do |registed_unit|%>
+        <%= find_course(registed_unit).name %>
+        <li><%= registed_unit.title %></li>
+      <% end %>
+  </div>
+
+  <table class="table">
     <tr>
       <th>Stu ID</th>
       <th>Student Name</th>
@@ -11,7 +17,6 @@
       <th>Phone</th>
       <th>RegistDay</th>
       <th>Note</th>
-
     </tr>
     <tr>
       <td><%= @user.student_id %></td>
@@ -24,27 +29,27 @@
       <td><%= @user.note %></td>
     </tr>
   </table>
-<br>
-
-<div class="container">
-    <%  @user.registed_units.each do |registed_unit|%>
-      <%= get_registed_course_name(registed_unit) %>
-      <li><%= registed_unit.title %></li>
-    <% end %>
-</div>
-
+<hr>
+  <%= link_to 'Back to users info', users_path, class: "btn btn-md btn-primary" %>
   <% if can? :admin, current_user %>
   <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal" id="add_new_attendance_button" >Add a new attendance</button>
   <% end %>
-
+  <br>
   <h2>Attendances</h2>
-  <% attendances = Attendance.where(user_id: @user.id) %>
-  <div class="attendances">
-  <% attendances.each do |attendance| %>
-      <%= render "/attendances/attendance", attendance: attendance, user:@user%>
-  <% end %>
+  <br>
+  <div class="well">
+    <% attendances = Attendance.where(user_id: @user.id) %>
+    <% if attendances != nil %>
+      <div class="attendances">
+      <% attendances.each do |attendance| %>
+          <%= render "/attendances/attendance", attendance: attendance, user:@user%>
+          <%= render "/classtimetables/showtimetable", classtimetable: attendance.classtimetable unless attendance.classtimetable==nil %>
+      <% end %>
+      </div>
+    <% end %>
   </div>
 <% end %>
+
 
 <!-- this pop up a new attendance form to fill -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -57,7 +62,7 @@
         <h4 class="modal-title">New Atendance</h4>
       </div>
       <div class="modal-body" id="new_form">
-        <div id="new_attendance">
+        <div id="add_new_attendance">
         <%= render "/attendances/form" %>
         </div>
       </div>

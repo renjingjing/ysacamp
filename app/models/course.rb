@@ -11,11 +11,8 @@ class Course < ActiveRecord::Base
   end
 
   def has_course_units( course_id )
-    Courseandunit.find course_id
+    Attendance.find course_id
   end
 
-  def has_those_units( course_unit )
-    Course.find course_unit
-  end
-
+  
 end

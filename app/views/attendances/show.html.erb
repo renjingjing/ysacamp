@@ -1,19 +1,74 @@
-<p id="notice"><%= notice %></p>
+<%#= render "attendance",attendance:@attendance %>
+<div class = "well" >
+  <p id="notice"><%= notice %></p>
+  <div class="panel panel-default">
+  <!-- Default panel contents -->
+    <div class="panel-heading">AttendanceDetails</div>
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>AttendanceId</th>
+            <th>RegistedCourse</th>
+            <th>RegistedCourseUnit</th>
+            <th>DateEnrollment</th>
+            <th>Record</th>
+            <th>Credit</th>
+            <th>Postpone</th>
+            <th>Finished</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @attendance.id %></td>
+            <% if @attendance.course_unit_id != nil%>
+            <td><%= find_course(@attendance.course_unit).name %></td>
+            <td><%= get_attendance_course_unit(@attendance.course_unit_id)%></td>
+            <% else %>
+            <td>/</td>
+            <td>/</td>
+            <% end %>
+            <td><%= @attendance.date_enrollment %></td>
+            <td><%= @attendance.attendanted_record %></td>
+            <td><%= @attendance.class_credit %></td>
+            <td><%= @attendance.postpone %></td>
+            <td><%= @attendance.finished %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <%= render "/classtimetables/showtimetable", classtimetable: @attendance.classtimetable unless @attendance.classtimetable==nil%>
+  </div>
 
-<p>
-  <strong>Date attended:</strong>
-  <%= @attendance.date_attended %>
-</p>
 
-<p>
-  <strong>Postpone:</strong>
-  <%= @attendance.postpone %>
-</p>
+    <% if can? :admin,current_user %>
+      <button type = "button" class = "btn btn-info btn-xs edit" data-toggle = "modal" data-target = "#myupdate_a" id = "attendance_update_button" >EditAttendanceRecord</button>
+      <% if @attendance.classtimetable==nil %>
+        <%= link_to 'New Classtimetable', new_classtimetable_path,class:"btn btn-info btn-xs" %>
+      <% else %>
+        <%= link_to "EditClasstimetable",classtimetable_path(@attendance.classtimetable),class:"btn btn-info btn-xs"  %>
+      <% end %>
+    <% end %>
+      <%= link_to "UserAttendances",user_path(@user),class:"btn btn-info btn-xs" %>
 
-<p>
-  <strong>Note:</strong>
-  <%= @attendance.note %>
-</p>
 
-<%= link_to 'Edit', edit_attendance_path(@attendance) %> |
-<%= link_to 'Back', attendances_path %>
+  <div id = "myupdate_a" class = "modal fade" role = "dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit <%= @user.full_name %><%= @attendance.course_unit.title %> Atendance</h4>
+        </div>
+        <div class="modal-body" id="new_form">
+          <div id="edit_attendance">
+            <%= render "/attendances/form",user:@user,attendance:@attendance %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="update_attendance_close" >Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

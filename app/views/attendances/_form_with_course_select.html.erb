@@ -1,0 +1,38 @@
+<%=simple_form_for [@user, @attendance||=Attendance.new],remote: true do |f| %>
+<%# byebug %>
+      <%#= f.input :attendanted_record %>
+      <%#= f.input :date_enrollment %>
+      <%#= f.input :class_credit %>
+      <%#= f.input :postpone %>
+      <%#= f.input :finished %>
+      <%  if @attendance.id != nil %>
+        <% coursename = @attendance.course_unit.course.name %>
+        <% courseunit = "#{@attendance.course_unit.id};"+"  "+
+                        "TITLE:#{@attendance.course_unit.title};"+"  "+
+                        "UNIT_ID:#{@attendance.course_unit.id};"+"  "+
+                        "COURSE:#{@attendance.course_unit.course.name}" %>
+        <% timetable =  "#{@attendance.classtimetable.id};"+"  "+
+                        "#{formatted_time(@attendance.classtimetable.start_time)};"+"  "+
+                        "#{formatted_date(@attendance.classtimetable.start_day)};"+"  "+
+                        "#{@attendance.course_unit.title};"+"  "+
+                        "#{@attendance.course_unit.course.name};"+"  "+
+                        "#{@attendance.course_unit.id}" %>
+      <% end  %>
+      <%= f.input       :attendanted_record,collection: Course.all.map {|c| c.name} , selected:coursename %>
+      <%= f.association :course_unit,collection: CourseUnit.all.map {|c|
+                        x = "#{c.id};"+"  "+
+                        "TITLE:#{c.title};"+"  "+
+                        "UNIT_ID:#{c.id};"+"  "+
+                        "COURSE:#{c.course.name}"}, selected:courseunit %>
+      <%= f.association :classtimetable,as: :radio_buttons,
+                        collection: Classtimetable.all.map {|c|
+                        x="#{c.id};"+"  "+
+                          "#{formatted_time(c.start_time)};"+"  "+
+                          "#{formatted_date(c.start_day)};"+"  "+
+                          "#{c.course_unit.title};"+"  "+
+                          "#{c.course_unit.course.name};"+"  "+
+                          "#{c.course_unit.id}"},
+                        include_blank: true,input_html: { multiple: false } , checked:timetable %>
+      <%= f.input       :note %>
+      <%= f.submit      :submit, class: "btn btn-primary",id:"submit_new_attendance" %>
+  <% end %>

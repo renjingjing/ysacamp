@@ -1,0 +1,5 @@
+alert("successfully update");
+$("#attendance_<%= @attendance.id %> #edit_attendance_close").click();
+$("#attendance_<%= @attendance.id %>").fadeOut().remove();
+$(".modal-backdrop").removeClass("in");
+$(".attendances").prepend("<%= j render 'attendance', attendance: @attendance %>");

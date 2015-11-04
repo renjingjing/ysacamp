@@ -1,0 +1,19 @@
+<div class="well">
+  <br>
+  <%= link_to 'Go back to attendances', attendancebooks_path %>
+  <br>
+  <div class="clearfix">
+    <% if @attendances !=nil %>
+      <% @attendances.each do |attendance|  %>
+        <div class="col-md-8" >
+          <h4 ><i class="fa fa-tasks">&nbsp; </i><%= attendance.user.full_name %>&nbsp; Atendance Details</h4>
+        </div>
+        <div class="col-md-4" style="padding-top:4px" >
+          <%= link_to 'Go to show attendance details', attendancebook_path(attendance), class: "btn btn-xs btn-primary" %>
+          <%= link_to 'Back to home', root_path, class: "btn btn-xs btn-primary" %>
+        </div>
+          <%= render "/attendances/attendance", attendance:attendance %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

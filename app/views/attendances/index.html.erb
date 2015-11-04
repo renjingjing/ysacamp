@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Attendances</h1>
+<h1>Listing User's Attendances</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Date attended</th>
@@ -34,7 +34,6 @@
 
 <% if can? :admin, current_user %>
     <h2>select students' attendance tables</h2>
-
     <div class="well well-lg">
     <div class="row">
         <div class="col-md-4">

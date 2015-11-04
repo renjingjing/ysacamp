@@ -1,45 +1,32 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
 
-<p>
-  <strong>ClassStartTime:</strong>
-  <%= formatted_time(@classtimetable.start_time) %>
-</p>
+<%= render "showtimetable", classtimetable:@classtimetable%>
 
-<p>
-  <strong>ClassEndTime:</strong>
-  <%= formatted_time(@classtimetable.start_time+(@classtimetable.minutes_per_class/60).hours) %>
-</p>
+<% if can? :admin, current_user %>
+  <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#editclasstimetable" id="edit_classtimetable_button" >Edit Classtimetable</button>
+  <%= link_to 'Destroy', classtimetable_path(@classtimetable), method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger btn-md" %>
+<% end %>
+  <%= link_to 'show all classtimetables', classtimetables_path,class:"btn btn-info btn-md" %>
+</div>
 
-<p>
-  <strong>MinsPerClass:</strong>
-  <%= @classtimetable.minutes_per_class %>&nbsp; tmins
-</p>
-
-<p>
-  <strong>CourseUnitStartDay:</strong>
-  <%= @classtimetable.start_day %>
-</p>
-
-<p>
-  <strong>CourseUnitEndDay:</strong>
-  <%= formatted_date(get_end_day(@classtimetable.start_day,@classtimetable.weekdays,@classtimetable.unit_class_times)) %>
-</p>
-
-<p>
-  <strong>CourseUnitClassTime:</strong>
-  <%= @classtimetable.unit_class_times %>&nbsp; times/unit
-</p>
-
-<p>
-  <strong>Weekdays:</strong>
-  <%= show_weekdays(@classtimetable.weekdays) %>
-</p>
-
-<p>
-  <strong>TimesPerWeek:</strong>
-  <%= times_perweek(@classtimetable.weekdays) %>&nbsp; tclasses/week
-</p>
-
-
-<%= link_to 'Edit', edit_classtimetable_path(@classtimetable) %> |
-<%= link_to 'Back', classtimetables_path %>
+<!-- this pop up a new attendance form to fill -->
+<div id="editclasstimetable" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Classtimetable</h4>
+      </div>
+      <div class="modal-body" id="edit_classtimetable_form">
+        <div id="edit_classtimetable">
+        <%= render "form" %>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="edit_classtimetable_close" >Close</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

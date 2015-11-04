@@ -1,0 +1,38 @@
+<div class="row">
+  <br>
+  <div class="container" >
+    <h4 ><i class="fa fa-tasks">&nbsp; </i><%= @user.full_name %> Atendance Details</h4>
+    <br>
+    <div class="col-md-6" >
+      <h5 style="margin-left:12px">Attendance Information</h5>
+      <br>
+      <div class="col-md-6" >
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-info">AttendanceId:</li>
+          <li class="list-group-item list-group-item-warning">RegistedCourse:</li>
+          <li class="list-group-item list-group-item-info">RegistedCourseUnit:</li>
+          <li class="list-group-item list-group-item-warning">DateEnrollment:</li>
+          <li class="list-group-item list-group-item-info">DateAttendedRecord:</li>
+          <li class="list-group-item list-group-item-warning">DateAttendedCredit:</li>
+          <li class="list-group-item list-group-item-info">Postpone:</li>
+          <li class="list-group-item list-group-item-warning">Finished:</li>
+        </ul>
+      </div>
+      <div class="col-md-6" , style="margin-left:-100px" >
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-info"><%= attendance.id %>&nbsp; </li>
+          <% if attendance.course_unit_id != nil%>
+          <li class="list-group-item list-group-item-warning"><%= find_course(attendance.course_unit).name %>&nbsp; </li>
+          <li class="list-group-item list-group-item-info"><%= get_attendance_course_unit(attendance.course_unit_id)%>&nbsp; </li>
+          <% else %>
+          <li class="list-group-item list-group-item-warning">/</li>
+          <li class="list-group-item list-group-item-info">/</li>
+          <% end %>
+          <li class="list-group-item list-group-item"><%= attendance.date_enrollment %>&nbsp; </li>
+          <li class="list-group-item list-group-item"><%= attendance.attendanted_record %>&nbsp; </li>
+          <li class="list-group-item list-group-item"><%= attendance.class_credit %>&nbsp; </li>
+          <li class="list-group-item list-group-item"><%= attendance.postpone %>&nbsp; </li>
+          <li class="list-group-item list-group-item"><%= attendance.finished %>&nbsp; </li>
+        </ul>
+      </div>
+    </div>
