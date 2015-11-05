@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20150930183245) do
     t.string   "date_enrollment",    limit: 1
     t.boolean  "finished",                     default: false
     t.integer  "class_credit"
+    t.string   "attendanted_record",                                        array: true
     t.integer  "classtimetable_id"
-    t.text     "attendanted_record"
   end
 
   add_index "attendances", ["classtimetable_id"], name: "index_attendances_on_classtimetable_id", using: :btree

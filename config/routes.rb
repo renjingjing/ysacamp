@@ -13,10 +13,6 @@ Rails.application.routes.draw do
     resources :attendances
   end
 
-  resources :attendancebooks
-  get "/search_by_first_name/attendancebooks" => "attendancebooks#search_by_first_name"
-  get "/to_day/attendancebooks" => "attendancebooks#to_day"
-
   resources :password_resets,only:[:new,:create,:edit,:update]
 
   resources :sessions, only: [:new, :create] do

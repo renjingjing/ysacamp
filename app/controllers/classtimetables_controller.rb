@@ -25,7 +25,6 @@ class ClasstimetablesController < ApplicationController
   # POST /classtimetables.json
   def create
     @classtimetable = Classtimetable.new(classtimetable_params)
-    @classtimetable.class_days = get_class_day(@classtimetable.start_day,@classtimetable.weekdays,@classtimetable.unit_class_times).join(";")
     respond_to do |format|
       if @classtimetable.save
         format.html { redirect_to @classtimetable, notice: 'Classtimetable was successfully created.' }
@@ -40,7 +39,6 @@ class ClasstimetablesController < ApplicationController
   # PATCH/PUT /classtimetables/1
   # PATCH/PUT /classtimetables/1.json
   def update
-    @classtimetable.class_days = get_class_day(@classtimetable.start_day,@classtimetable.weekdays,@classtimetable.unit_class_times).join(";")
     respond_to do |format|
       if @classtimetable.update(classtimetable_params)
         format.html { redirect_to @classtimetable, notice: 'Classtimetable was successfully updated.' }

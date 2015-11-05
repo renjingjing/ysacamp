@@ -1,7 +1,0 @@
-<td  id="<%= dom_id(attendance) %>">
-  <% if checked?(attendance.attendanted_record) %>
-    <i class="fa fa-circle fa-lg"></i>
-  <% else %>
-    <%= link_to '<i class="fa fa-circle-o fa-lg"></i>'.html_safe, attendancebook_path(attendance), method: :put,remote: true,data:{confirm: "Are you sure to check!"}%>
-  <% end %>
-</td>

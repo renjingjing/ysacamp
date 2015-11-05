@@ -1,3 +1,0 @@
-alert("successfully update");
-$("#<%= dom_id(@attendance) %> i").removeClass("fa-circle-o").addClass("fa-circle");
-$("#<%= dom_id(@attendance) %>").replaceWith("<%= j render '/attendancebooks/today',attendance:@attendance %>");

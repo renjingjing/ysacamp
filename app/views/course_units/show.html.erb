@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 <p>
-  <%# courses=@course_unit.course.all %>
-  <% if @course_unit.course!= nil %>
-      <%# courses.each do |course| %>
-      <h4>Course: <%= link_to @course_unit.course.name,courses_path(search: @course_unit.course.name, order: "id") %></nobr></h4>
-      <%# end %>
+  <% courses=@course_unit.courses.all %>
+  <% if courses!= nil %>
+      <% courses.each do |course| %>
+      <h4>Course: <%= link_to course.name,courses_path(search: course.name, order: "id") %></nobr></h4>
+      <% end %>
   <% end %>
 </p>
 

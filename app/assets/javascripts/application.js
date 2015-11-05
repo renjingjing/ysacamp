@@ -16,10 +16,6 @@
 //= require_tree .
 
 $(document).ready(function() {
-  
-
-
-
     $( "#datepicker_start_day" ).datepicker({
       changeMonth:true,  //月份下拉列表
       changeYear: true,  //月份下拉列表
@@ -34,7 +30,6 @@ $(document).ready(function() {
         $( "#datepicker_end_day" ).datepicker( "option", "minDate", selectedDate );
       }
     });
-
     $( "#datepicker_end_day" ).datepicker({
       changeMonth:true,  //月份下拉列表
       changeYear: true,  //月份下拉列表
@@ -50,149 +45,121 @@ $(document).ready(function() {
       }
     });
 
-    $( "#datepicker_date_enrollment" ).datepicker({
-      changeMonth:true,  //月份下拉列表
-      changeYear: true,  //月份下拉列表
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 6,
-      showWeek: true,
-      firstDay: 1,
-      dateFormat:"yy-mm-dd",
-      // dayNamesMin:['Sun','Mo','Tu','We','Th','Fr','Sa'],
-      onClose: function( selectedDate ) {
-        $( "#datepicker_date_enrollment" ).datepicker( "option", "minDate", selectedDate );
-      }
-    });
-
     // flash notice and alert click fadeOut
     $(".notice").on("click",function(){
       $(this).parent().fadeOut("20");
     });
 
 
-    $("#add_new_attendance_button").on('click',function(e){
-      e.preventDefault;
+    $("#add_new_attendance_button").on('click',function(){
+      // e.preventDefault();
+
+      // $(".attendance_classtimetable").children().css('color', '#d3d3d3');
+      // $(".attendance_classtimetable input").attr('disabled',true);
+      // $("#attendance_course_unit_id option").hide();
+      $("#attendance_attendanted_record").val('');
       $("#attendance_course_unit_id").val('');
       $("input.radio_buttons").attr({'checked':false,'disabled':true}).closest( "label" ).css('color', '#d3d3d3');
+
     });
 
-    $( "#new_attendance" ).on( "change", "#attendance_course_unit_id", function() {
-      var course_unit_info = $('#attendance_course_unit_id option:selected').val();
-      // console.log(course_unit_info);
-      var course_unit_id = course_unit_info.split(";")[0];
-        $("input[name='attendance[classtimetable_id]']").each(function(i) {
-          var v=$(this).val();
-          $(this).closest( "label" ).css('color', '#d3d3d3');
-          $(this).attr('disabled',true);
-          $(this).attr('checked', false);
-          var course_unit_array = v.split(":");
-          var course_unit_id_in_classtimetable = parseInt(course_unit_array.slice(-1).pop());
-            // console.log(course_unit_id_in_classtimetable);
-            if (course_unit_id_in_classtimetable == course_unit_id){
-              $(this).closest( "label" ).css('color', 'black');
-              $(this).attr('disabled',false);
-            }
-        });
-    });
-
-    // $("#myupdate_a").on( "click",function(e){
-    //   e.preventDefault;
-    $("#myupdate_a").on( "change", "#attendance_course_unit_id", function() {
-
+    $( "#new_attendance" ).on( "change", "#attendance_attendanted_record",function(){
       // check course group,get all avilable course_name
-      $(".attendance_classtimetable input").attr('disabled',true);
-          var course_unit_info = $("#attendance_course_unit_id option:selected").val();
+      var course_name = document.querySelector('#attendance_attendanted_record').value;
+        // console.log(course_name);
+        // check all option of course_unit group,get the units belongs_to the selected course_resources
+        // and only make those avilable units show in the coursr_unit select group
+          $("#attendance_course_unit_id").val("");
           $("#attendance_course_unit_id option").each(function(){
             //before check avilable unit, set all units show and clear the input field of the course_unit
-            var course_unit_id = course_unit_info.split(";")[0];
-              $("input[name='attendance[classtimetable_id]']").each(function(i) {
-                var v=$(this).val();
-                $(this).closest( "label" ).css('color', '#d3d3d3')
-                $(this).attr('disabled',true);
-                $(this).attr('checked',false);
-                var course_unit_array = v.split(":");
-                var course_unit_id_in_classtimetable = parseInt(course_unit_array.slice(-1).pop());
+            $(this).show();
+            var a = $(this).val().split(";").slice(-2).pop();
+            var unit_course_name = $(this).val().split(";").slice(-2).pop().split(":").slice(-1).pop();
+              //  console.log(unit_course_name);
+              if (unit_course_name != course_name){
+                $(this).hide();
+              }
+            $( "#new_attendance" ).on( "change", "#attendance_course_unit_id", function() {
+              // TITLE:VR level-7;  UNIT_ID:7;  COURSE:Unity3D and C# regular
+              $(".attendance_classtimetable input").attr('disabled',false);
+              var course_unit_info = document.querySelector('#attendance_course_unit_id').value;
+              var course_unit_id = course_unit_info.split(";")[0];
+              // .split(":")[1];
+                $("input[name='attendance[classtimetable_id]']").each(function(i) {
+                  var v=$(this).val();
+                  $(this).closest( "label" ).css('color', '#d3d3d3')
+                  $(this).attr('disabled',true);
+                  $(this).attr('checked', false);
+                  var course_unit_array = v.split(";");
+                  // console.log(course_unit_array);
+                  var course_unit_id_in_classtimetable = parseInt(course_unit_array.slice(-1).pop());
+                    // console.log("course_unit_id");
+                    // console.log(course_unit_id);
+                    // console.log("course_unit_id_in_classtimetable");
+                    console.log(course_unit_id_in_classtimetable);
                   if (course_unit_id_in_classtimetable == course_unit_id){
+
                     $(this).closest( "label" ).css('color', 'black');
                     $(this).attr('disabled',false);
-                    // $(this).attr('checked',true);
                   }
-              });
+                });
             });
-      });
-
-
-
-    $( "#attendance_update_button" ).on( "click",function(){
-      // e.preventDefault;
-      // disable all classtimetable inputcheck course group,get checked unit id
-      $(".attendance_classtimetable input").attr('disabled',true);
-      var course_unit_info = $('#attendance_course_unit_id option:selected').val();
-      var course_unit_id = course_unit_info.split(";")[0];
-      $("#attendance_course_unit_id option").each(function(){
-        //before check avilable unit, set all units show and clear the input field of the course_unit
-        $("input[name='attendance[classtimetable_id]']").each(function(i) {
-          var v=$(this).val();
-          $(this).closest( "label" ).css('color', '#d3d3d3')
-          $(this).attr('disabled',true);
-          // $(this).attr('checked', false);
-          var course_unit_array = v.split(":");
-          var course_unit_id_in_classtimetable = parseInt(course_unit_array.slice(-1).pop());
-            // console.log(course_unit_id_in_classtimetable);
-            if (course_unit_id_in_classtimetable == course_unit_id){
-              $(this).closest( "label" ).css('color', 'black');
-              $(this).attr('disabled',false);
-              $(this).attr('checked',true);
-            }
         });
-      });
     });
+
+      // $( "#edit_attendance" ).on( "change", "#attendance_attendanted_record",function(){
+      //   // check course group,get all avilable course_name
+      //   var course_name = document.querySelector('#attendance_attendanted_record').value;
+      //     // console.log(course_name);
+      //     // check all option of course_unit group,get the units belongs_to the selected course_resources
+      //     // and only make those avilable units show in the coursr_unit select group
+      //       $("#attendance_course_unit_id").val("");
+      //       $("#attendance_course_unit_id option").each(function(){
+      //         //before check avilable unit, set all units show and clear the input field of the course_unit
+      //         $(this).show();
+      //         var a = $(this).val().split(";").slice(-2).pop();
+      //         var unit_course_name = $(this).val().split(";").slice(-2).pop().split(":").slice(-1).pop();
+      //           //  console.log(unit_course_name);
+      //           if (unit_course_name != course_name){
+      //             $(this).hide();
+      //           }
+      //         $( "#new_attendance" ).on( "change", "#attendance_course_unit_id", function() {
+      //           // TITLE:VR level-7;  UNIT_ID:7;  COURSE:Unity3D and C# regular
+      //           $(".attendance_classtimetable input").attr('disabled',false);
+      //           var course_unit_info = document.querySelector('#attendance_course_unit_id').value;
+      //           var course_unit_id = course_unit_info.split(";")[0];
+      //           // .split(":")[1];
+      //             $("input[name='attendance[classtimetable_id]']").each(function(i) {
+      //               var v=$(this).val();
+      //               $(this).closest( "label" ).css('color', '#d3d3d3')
+      //               $(this).attr('disabled',true);
+      //               $(this).attr('checked', false);
+      //               var course_unit_array = v.split(";");
+      //               // console.log(course_unit_array);
+      //               var course_unit_id_in_classtimetable = parseInt(course_unit_array.slice(-1).pop());
+      //                 // console.log("course_unit_id");
+      //                 // console.log(course_unit_id);
+      //                 // console.log("course_unit_id_in_classtimetable");
+      //                 console.log(course_unit_id_in_classtimetable);
+      //               if (course_unit_id_in_classtimetable == course_unit_id){
+      //
+      //                 $(this).closest( "label" ).css('color', 'black');
+      //                 $(this).attr('disabled',false);
+      //               }
+      //             });
+      //         });
+      //     });
+      // });
 
     $("input.radio_buttons").on("click",function(){
-     if($(this).attr('checked') == 'checked') {
-      //  alert("it's checked,i set is unchecked now!!! <(");
-       $(this).attr('checked',false);
-     }else{
-      //  alert("it's unchecked,i set is checked now|:< )");
-       $(this).attr('checked',true);
-     }
+       if($(this).attr('checked') == 'checked') {
+        //  alert("it's checked,i set is unchecked now!!! <(");
+         $(this).attr('checked',false);
+       }else{
+        //  alert("it's unchecked,i set is checked now|:< )");
+         $(this).attr('checked',true);
+       }
      });
 
-     $("#update_attendance_close").on("click",function(){
-      $(".edit_attendance")[0].reset();
-     });
 
-    $('td#show_class_days').hover(function() {
-      $('div#pop-up',this).show();
     });
-
-
-    $("td#show_class_days").mouseleave(function(){
-      $('div#pop-up',this).hide();
-    });
-
-    $(".program_container").on('click',function(e){
-      e.preventDefault();
-      $(".program_container").css('background-color','white').next("#arrow_container").hide();;
-      var program=$(this).find(".program_name").html().split(' ').join('');
-      $(this).css('background-color','rgba(238, 169, 39, 0.6)');
-      $('.arrow').addClass('test');
-      $(this).closest('.program_container');
-      $(this).next('#arrow_container').show();
-      $(".get_class_li").each(function(){
-        var course_all=$(this).html();
-        // console.log(course_all);
-        if (course_all.search(program)!=-1) {
-          $(this).parent().attr('disabled', false).css('background-color','rgba(238, 169, 39, 0.6)');
-          $(this).parent().find('a').unbind('click', false);
-        }else{
-          // $(this).parent().attr('disable','disabled');
-          $(this).parent().attr("disabled","disabled").css('background-color','white');
-          $(this).parent().find('a').bind('click', false);
-          // $(this).siblings().removeAttr('disabled');
-        }
-      });
-    });
-
-});

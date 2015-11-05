@@ -1,4 +1,4 @@
-  <span id="logo"><%= image_tag('ysalogocookieslogan300.jpg') %></span>
+<%= image_tag('ysalogocookieslogan300.jpg') %>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -89,8 +89,6 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><%= link_to "Classtimetables", classtimetables_path %></li>
-              <li><%= link_to "Check Attendances", attendancebooks_path %></li>
-              <li><%= link_to "Today Attendances", to_day_attendancebooks_path %></li>
             </ul>
           </li>
         <% end %>

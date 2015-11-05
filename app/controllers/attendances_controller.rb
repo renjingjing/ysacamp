@@ -70,16 +70,6 @@ class AttendancesController < ApplicationController
     end
   end
 
-  # def search_by_first_name
-  #   @attendances = Attendance.all
-  #   if params[:search]
-  #       @attendances = Attendance.search(params[:search]).order("#{params[:order]}")
-  #     else
-  #       @attendances = Attendance.order("#{params[:order]}")
-  #     end
-  # end
-  #
-
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_attendance
@@ -92,11 +82,10 @@ class AttendancesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def attendance_params
     params.require(:attendance).permit(
-                                      # :date_enrollment,
-                                      # :class_credit,
-                                      # :postpone,
-                                      # :finished,
-                                      :attendanted_record,
+                                      :date_enrollment,
+                                      :class_credit,
+                                      :postpone,
+                                      :finished,
                                       :note,
                                       :course_unit_id,
                                       :classtimetable_id

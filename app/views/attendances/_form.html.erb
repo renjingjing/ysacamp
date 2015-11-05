@@ -1,37 +1,16 @@
 <%=simple_form_for [@user, @attendance||=Attendance.new],remote: true do |f| %>
-      <%  if @attendance.id != nil %>
-        <% courseunit     ="#{@attendance.course_unit.id};"+"  "+
-                           "CourseName:#{@attendance.course_unit.course.name};"+"  "+
-                           "CourseUnit:#{@attendance.course_unit.title}" %>
-        <% timetable      ="#{@attendance.classtimetable.id};"+"  "+
-                           "#{formatted_time(@attendance.classtimetable.start_time)};"+"  "+
-                           "#{formatted_date(@attendance.classtimetable.start_day)};"+"  "+
-                           "CourseUnit:#{@attendance.course_unit.title};"+"  "+
-                           "CourseName:#{@attendance.course_unit.course.name};"+"  "+
-                           "CourseUnitId:#{@attendance.course_unit.id}" unless @attendance.classtimetable==nil%>
-        <% classcredit    =@attendance.classtimetable.unit_class_times - @attendance.attendanted_record.length unless @attendance.classtimetable==nil%>
-        <% enrollmentday  =formatted_date(@attendance.classtimetable.start_day) unless @attendance.classtimetable==nil %>
-        <%# byebug %>
-      <% end  %>
-      <%= f.input       :attendanted_record %>
-      <%= f.input       :class_credit, input_html:{ value:classcredit}%>
+      <%#= f.input :attendanted_record %>
+      <%#= f.input :date_enrollment %>
+      <%#= f.input :class_credit %>
+      <%#= f.input :postpone %>
+      <%#= f.input :finished %>
+      <%= f.input       :attendanted_record,collection: Course.all.map {|c| c.name} %>
       <%= f.association :course_unit,collection: CourseUnit.all.map {|c|
-                        "#{c.id};"+"  "+
-                        "CourseName:#{c.course.name};"+"  "+
-                        "CourseUnit:#{c.title}" },include_blank: true, selected:courseunit %>
+                        x="#{c.id};"+"  "+"TITLE:#{c.title};"+"  "+"UNIT_ID:#{c.id};"+"  "+"COURSE:#{c.course.name}" } %>
       <%= f.association :classtimetable,as: :radio_buttons,
                         collection: Classtimetable.all.map {|c|
-                        x="#{c.id};"+"  "+
-                          "#{formatted_time(c.start_time)};"+"  "+
-                          "#{formatted_date(c.start_day)};"+"  "+
-                          "CourseName:#{c.course_unit.course.name};"+"  "+
-                          "CourseUnit:#{c.course_unit.title};"+"  "+
-                          "CourseUnitId:#{c.course_unit.id}"},
-                        include_blank: true,checked:timetable %>
-      <%#= f.label       :date_enrollment  %>
-      <%= f.input       :date_enrollment,input_html:{value:enrollmentday} %>
-      <%= f.input       :postpone %>
-      <%= f.input       :finished %>
+                        x="#{c.id};"+"  "+"#{formatted_time(c.start_time)};"+"  "+"#{formatted_date(c.start_day)};"+"  "+"#{c.course_unit.title};"+"  "+"#{c.course_unit.course.name};"+"  "+"#{c.course_unit.id}"},
+                        include_blank: true,input_html: { multiple: false } %>
       <%= f.input       :note %>
-      <%= f.submit      :submit, class: "btn btn-primary",id:"submit_update_attendance" %>
+      <%= f.submit      :submit, class: "btn btn-primary",id:"submit_new_attendance" %>
   <% end %>
