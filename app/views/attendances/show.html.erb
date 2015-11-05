@@ -1,5 +1,6 @@
 <%#= render "attendance",attendance:@attendance %>
 <div class = "well" >
+<% if @attendance.user==current_user || admin_user? %>
   <p id="notice"><%= notice %></p>
   <div class="panel panel-default">
   <!-- Default panel contents -->
@@ -72,3 +73,4 @@
       </div>
     </div>
   </div>
+<% end %>

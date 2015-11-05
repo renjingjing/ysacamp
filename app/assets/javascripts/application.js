@@ -16,10 +16,6 @@
 //= require_tree .
 
 $(document).ready(function() {
-  
-
-
-
     $( "#datepicker_start_day" ).datepicker({
       changeMonth:true,  //月份下拉列表
       changeYear: true,  //月份下拉列表
@@ -96,8 +92,6 @@ $(document).ready(function() {
         });
     });
 
-    // $("#myupdate_a").on( "click",function(e){
-    //   e.preventDefault;
     $("#myupdate_a").on( "change", "#attendance_course_unit_id", function() {
 
       // check course group,get all avilable course_name
@@ -172,18 +166,55 @@ $(document).ready(function() {
       $('div#pop-up',this).hide();
     });
 
+    // var program_name_id;
+    // $(".program_name_home").on('click',function(){
+    //   var program_id_name=$(this).attr('id');
+    //   // // console.log(programe_id_name);
+    //   // $(".program_container").load(function(){
+    //   //   $(".program_container").each(function(){
+    //   //     console.log(programe_id_name);
+    //   //     console.log($(this).attr('id'));
+    //   // alert("000000");
+    //   // setTimeout(function(){
+    //   //   console.log("-------------");
+    //   //   // // program_name_id='#'+program_id_name;
+    //   //   // // $('.program').find("ul").attr("id", "#startup").addClass('select');
+    //   //   alert("selected");
+    //   // },5000);
+    //   $(".program_container").trigger('click');
+    //   console.log("-------------");
+    //
+    // });
+    //
+    //
+    // $('.program_container').bind('style', function() {
+    //   // e.preventDefault();
+    //   console.log( $(this).attr('style') );
+    // });
+
     $(".program_container").on('click',function(e){
       e.preventDefault();
-      $(".program_container").css('background-color','white').next("#arrow_container").hide();;
-      var program=$(this).find(".program_name").html().split(' ').join('');
-      $(this).css('background-color','rgba(238, 169, 39, 0.6)');
+      var pro_id='#'+$(this).attr('id');
+      highlight_p_c(pro_id);
+    });
+
+    var highlight_p_c=function(pro_id){
+      console.log(pro_id);
+      $(".program_container").css('background-color','white').next("#arrow_container").hide();
+      // var program=$(pro_id).find(".program_name").html().split(' ').join('');
+      $(pro_id).css('background-color','rgba(238, 169, 39, 0.6)');
       $('.arrow').addClass('test');
-      $(this).closest('.program_container');
-      $(this).next('#arrow_container').show();
+      // console.log('here');
+      $(pro_id).closest('.program_container');
+      $(pro_id).next('#arrow_container').show();
+      find_course(pro_id);
+    }
+
+    var find_course=function(pro_id){
       $(".get_class_li").each(function(){
-        var course_all=$(this).html();
+        var course_all=$(this).html().toLowerCase();
         // console.log(course_all);
-        if (course_all.search(program)!=-1) {
+        if (course_all.search(pro_id.replace('#',''))!=-1) {
           $(this).parent().attr('disabled', false).css('background-color','rgba(238, 169, 39, 0.6)');
           $(this).parent().find('a').unbind('click', false);
         }else{
@@ -193,6 +224,5 @@ $(document).ready(function() {
           // $(this).siblings().removeAttr('disabled');
         }
       });
-    });
-
+    }
 });

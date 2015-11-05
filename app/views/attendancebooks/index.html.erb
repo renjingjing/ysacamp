@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<% if @user==current_user || admin_user? %>
 <div class="well well-lg">
   <div class="row">
     <div class="col-md-4">
@@ -82,3 +83,4 @@
     <% end %>
   <!-- </div> -->
 </div>
+<% end %>

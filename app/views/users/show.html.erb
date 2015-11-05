@@ -1,4 +1,4 @@
-<% if user_signed_in? %>
+<% if @user==current_user || admin_user? %>
   <h3><%= @user.full_name %> information detail.</h3>
   <div class="container">
       <%  @user.registed_units.each do |registed_unit|%>

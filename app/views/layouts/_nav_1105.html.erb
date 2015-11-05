@@ -18,11 +18,11 @@
                   <li role="separator" class="divider"></li>
                     <!-- those parts can use ajax to do -->
                       <li><%= link_to "Unity3D and C# regular", course_path(1) %></li>
-                      <%#= link_to "Unity3D and C# regular", course_path(search: 'Unity3D and C# regular', order: "id") %>
-                      <li><%= link_to "Unity3D and C# Camp", course_path(2) %></li>
-                      <li><%= link_to "JavaScript", course_path(4) %></li>
-                      <li><%= link_to "HTML and CSS", course_path(3) %></li>
-                      <li><%= link_to "Photoshop", course_path(6) %></li>
+                      <%#= link_to "Unity3D and C# regular", courses_path(search: 'Unity3D and C# regular', order: "id") %>
+                      <li><%= link_to "Unity3D and C# Camp", courses_path(search: 'Unity3D and C# Camp', order: "id") %></li>
+                      <li><%= link_to "JavaScript", courses_path(search: 'JavaScript', order: "id") %></li>
+                      <li><%= link_to "HTML and CSS", courses_path(search: 'HTML and CSS', order: "id") %></li>
+                      <li><%= link_to "Photoshop", courses_path(search: 'Photoshop', order: "id") %></li>
                 </ul>
             </li>
             <li class="dropdown-submenu dropdown-menu-left">
@@ -30,7 +30,7 @@
                 <ul class="dropdown-menu">
                   <li><%= link_to "Leadership", programs_path(search: 'Leadership') %></li>
                   <li role="separator" class="divider"></li>
-                  <li><%= link_to "Speach", course_path(8) %></li>
+                  <li><%= link_to "Speach", courses_path(search: 'Speach', order: "id") %></li>
                 </ul>
             </li>
             <li class="dropdown-submenu dropdown-menu-left">
@@ -38,9 +38,9 @@
                 <ul class="dropdown-menu">
                   <li><%= link_to "YSA Kids",programs_path(search: 'YSA Kids') %></li>
                   <li role="separator" class="divider"></li>
-                  <li><%= link_to "Unity3D and C# regular for kids", course_path(1) %></li>
-                  <li><%= link_to "Unity3D and C# camp for kids", course_path(2) %></li>
-                  <li><%= link_to "Java", course_path(13) %></li>
+                  <li><%= link_to "Unity3D and C# regular for kids", courses_path(search: 'Unity3D and C# regular', order: "id") %></li>
+                  <li><%= link_to "Unity3D and C# camp for kids", courses_path(search: 'Unity3D and C# camp', order: "id") %></li>
+                  <li><%= link_to "Java", courses_path(search: 'Java', order: "id") %></li>
                 </ul>
             </li>
             <li class="dropdown-submenu dropdown-menu-left">
@@ -48,9 +48,9 @@
                 <ul class="dropdown-menu">
                   <li><%= link_to "YSA Teens",programs_path(search: 'YSA Teens') %></li>
                   <li role="separator" class="divider"></li>
-                  <li><%= link_to "Unity3D and C# regular for teens", course_path(1) %></li>
-                  <li><%= link_to "Unity3D and C# camp for teens", course_path(2) %></li>
-                  <li><%= link_to "Java", course_path(13) %></li>
+                  <li><%= link_to "Unity3D and C# regular for teens", courses_path(search: 'Unity3D and C# regular', order: "id") %></li>
+                  <li><%= link_to "Unity3D and C# camp for teens", courses_path(search: 'Unity3D and C# camp', order: "id") %></li>
+                  <li><%= link_to "Java", courses_path(search: 'Java', order: "id") %></li>
                 </ul>
             </li>
             <li><%= link_to "YSA Handyman",programs_path(search: 'YSA Handyman') %></li>

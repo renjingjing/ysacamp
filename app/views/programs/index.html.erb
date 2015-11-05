@@ -9,8 +9,13 @@
     <div class="program col-md-7">
     <% @programs.each do |program| %>
     <% image_name="/assets/icon-"+"#{program.program_name.delete(' ').downcase}"+".png" %>
-      <ul class="program_container col-md-7" style="background-image: url(<%= image_name  %>)">
-        <li >
+      <% if @programs.length==1 %>
+      <% @program=program%>
+      <ul class="program_container col-md-7 selected" id="<%= program.program_name.delete(' ').downcase%>" style="background-image: url(<%= image_name  %>)">
+      <% else %>
+      <ul class="program_container col-md-7" id="<%= program.program_name.delete(' ').downcase%>" style="background-image: url(<%= image_name  %>)">
+      <% end %>
+        <li>
           <p><%= link_to program.program_name,programs_path(search: program.program_name), class:"program_name"%></p>
           <p><%= program.description %></p>
           <% if can? :admin, current_user %>
@@ -38,9 +43,18 @@
           <% course.programeds.each do |pro| %>
           <% @program_class = "#{@program_class}" + "#{pro.program.program_name.delete(" ")}" + " " %>
           <% end %>
-          <li class="course_container"><%= link_to course.name,course_path(course) %>
+          <% if @programs.length==1 %>
+            <% if @program_class.delete(" ").include? @program.program_name.delete(" ") %>
+            <%#= @program.program_name %>
+            <li class="course_container selected"><%= link_to course.name,course_path(course) %>
+            <% else %>
+            <li class="course_container"><%= course.name %>
+            <% end %>
+          <% else %>
+            <li class="course_container"><%= link_to course.name,course_path(course) %>
+          <% end %>
             <p class="get_class_li"><%= @program_class %></p>
-          </li>
+            </li>
           <% end %>
         <% end %>
       </ul>
