@@ -1,5 +1,5 @@
-<% if user_signed_in? %>
-  <h3><%= @user.full_name %> information detail.</h3>
+<% if @user == current_user %>
+  <h3><%= @user.full_name %> !  This is your information detail.</h3>
   <hr>
   <table >
     <tr>
@@ -9,9 +9,7 @@
       <th>Parent Name</th>
       <th>Email</th>
       <th>Phone</th>
-      <th>RegistDay</th>
-      <th>Note</th>
-
+      <th>Registed Course Info</th>
     </tr>
     <tr>
       <td><%= @user.student_id %></td>
@@ -20,50 +18,24 @@
       <td><%= @user.parent_name %></td>
       <td><%= @user.email1 %></td>
       <td><%= @user.cell_phone %></td>
-      <td><%= @user.registration_time %></td>
-      <td><%= @user.note %></td>
+      <% registedunits = @user.registed_units %>
+      <% if registedunits != nil %>
+      <td>
+        <% registedunits.each do |registedunit| %>
+        <li>class_times: <%= registedunit.title %></li>
+        <dl>
+          <dd>  --class_times: <%= registedunit.class_times %></dd>
+          <dd>  --class_hour(s): <%= registedunit.class_hour %></dd>
+          <dd>  --remaining_classes: <%= registedunit.class_times %></dd>
+          <dd><%= link_to "check credit detail" %></dd>
+        </dl>
+        <% end %>
+      </td>
+      <% end %>
     </tr>
   </table>
-<br>
-
-<div class="container">
-    <%  @user.registed_units.each do |registed_unit|%>
-      <%= get_registed_course_name(registed_unit) %>
-      <li><%= registed_unit.title %></li>
-    <% end %>
-</div>
-
-  <% if can? :admin, current_user %>
-  <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal" id="add_new_attendance_button" >Add a new attendance</button>
-  <% end %>
-
-  <h2>Attendances</h2>
-  <% attendances = Attendance.where(user_id: @user.id) %>
-  <div class="attendances">
-  <% attendances.each do |attendance| %>
-      <%= render "/attendances/attendance", attendance: attendance, user:@user%>
-  <% end %>
-  </div>
 <% end %>
-
-<!-- this pop up a new attendance form to fill -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">New Atendance</h4>
-      </div>
-      <div class="modal-body" id="new_form">
-        <div id="new_attendance">
-        <%= render "/attendances/form" %>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" id="new_attendance_close" >Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+<%# this link to the edit page of the user that shows a form to edit the values already saved %>
+<%#= link_to (@user.locked ? "Lock" : "Un-lock"),
+            user_path(@user, {user: {locked: !@user.locked}}),
+            class: "btn btn-warning", method: :patch %>

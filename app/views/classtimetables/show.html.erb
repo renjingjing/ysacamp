@@ -1,45 +1,39 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>ClassStartTime:</strong>
-  <%= formatted_time(@classtimetable.start_time) %>
+  <strong>Start time:</strong>
+  <%= @classtimetable.start_time %>
 </p>
 
 <p>
-  <strong>ClassEndTime:</strong>
-  <%= formatted_time(@classtimetable.start_time+(@classtimetable.minutes_per_class/60).hours) %>
+  <strong>End time:</strong>
+  <%= @classtimetable.end_time %>
 </p>
 
 <p>
-  <strong>MinsPerClass:</strong>
-  <%= @classtimetable.minutes_per_class %>&nbsp; tmins
-</p>
-
-<p>
-  <strong>CourseUnitStartDay:</strong>
+  <strong>Start day:</strong>
   <%= @classtimetable.start_day %>
 </p>
 
 <p>
-  <strong>CourseUnitEndDay:</strong>
-  <%= formatted_date(get_end_day(@classtimetable.start_day,@classtimetable.weekdays,@classtimetable.unit_class_times)) %>
+  <strong>End day:</strong>
+  <%= @classtimetable.end_day %>
 </p>
 
 <p>
-  <strong>CourseUnitClassTime:</strong>
-  <%= @classtimetable.unit_class_times %>&nbsp; times/unit
+  <strong>Weekday:</strong>
+  <%= @classtimetable.weekday %>
 </p>
 
 <p>
-  <strong>Weekdays:</strong>
-  <%= show_weekdays(@classtimetable.weekdays) %>
+  <strong>Month:</strong>
+  <%= @classtimetable.month %>
 </p>
 
 <p>
-  <strong>TimesPerWeek:</strong>
-  <%= times_perweek(@classtimetable.weekdays) %>&nbsp; tclasses/week
+  <strong>Times_per_week:</strong>
+  <%= @classtimetable.times_per_week %>
 </p>
-
 
 <%= link_to 'Edit', edit_classtimetable_path(@classtimetable) %> |
 <%= link_to 'Back', classtimetables_path %>

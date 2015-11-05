@@ -1,7 +1,7 @@
 class Contact < ActiveRecord::Base
   validates :email, presence: {message: "must be present"},
             format: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  def self.search( contact )
+  def self.search(contact)
     # thing = "%#{item}%"s
     # where(["title ILIKE ? OR body ILIKE ?", thing, thing])
 

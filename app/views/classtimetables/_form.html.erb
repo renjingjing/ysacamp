@@ -1,3 +1,4 @@
+<%= form_for(@classtimetable) do |f| %>
   <% if @classtimetable.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@classtimetable.errors.count, "error") %> prohibited this classtimetable from being saved:</h2>
@@ -9,30 +10,36 @@
       </ul>
     </div>
   <% end %>
-<%= simple_form_for (@classtimetable)  do |f| %>
-  <div class="form-group">
-    <%= f.label :start_time %>
-    <%= f.time_select :start_time,class:"form-control" %>
+
+  <div class="field">
+    <%= f.label :start_time %><br>
+    <%= f.time_select :start_time %>
   </div>
-  <div class="form-group">
-    <%= f.label :start_time %>
-    <%= f.time_select :start_time,class:"form-control" %>
+  <div class="field">
+    <%= f.label :end_time %><br>
+    <%= f.time_select :end_time %>
   </div>
-  <div class="form-group">
-    <%= f.input :minutes_per_class %>
+  <div class="field">
+    <%= f.label :start_day %><br>
+    <%= f.datetime_select :start_day, wday: true %>
   </div>
-  <div class="form-group">
-    <%= f.label :start_day %>
-    <%= f.text_field :start_day,id:"datepicker_start_day",class:"form-control" %>
+  <div class="field">
+    <%= f.label :end_day%><br>
+    <%= f.datetime_select :end_day %>
   </div>
-  <div class="form-group">
-    <%= f.input :unit_class_times %>
+  <div class="field">
+    <%= f.label :weekday %><br>
+    <%= f.text_field :weekday  %>
   </div>
-  <div class="form-group">
-    <%= f.input :weekdays,as: :check_boxes,collection: ['Mon.', 'Tue.','Wed.', 'Thu.','Fri.','Sat.','Sun.'],input_html: { multiple: true } %><br>
+  <div class="field">
+    <%= f.label :month %><br>
+    <%= f.text_field :month %>
   </div>
-  <div class="form-group">
+  <div class="field">
+    <%= f.label :times_per_week%><br>
+    <%= f.text_field :times_per_week %>
+  </div>
+  <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-</div>

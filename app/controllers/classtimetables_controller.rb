@@ -68,12 +68,6 @@ class ClasstimetablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def classtimetable_params
-      params.require(:classtimetable).permit(:start_time,
-                                      :start_day,
-                                      :unit_class_times,
-                                      :minutes_per_class).tap do |whitelisted|
-                                      whitelisted[:weekdays] = params[:classtimetable][:weekdays].reject!{|a| a==""}
-                                      # this reject trime the "" items from weekdays array
-    end
+      params.require(:classtimetable).permit(:start_time, :end_time, :start_day, :end_day,:weekday, :month, :times_per_week)
     end
 end
