@@ -1,6 +1,6 @@
 class CourseUnit < ActiveRecord::Base
-  has_many  :courseandunits,dependent: :destroy
-  has_many  :courses,through: :courseandunits
+  # has_many  :courseandunits,dependent: :destroy
+  # has_many  :courses,through: :courseandunits
 
   has_many  :user_course_units, dependent: :nullify
   has_many  :registed_users, through: :user_course_units, source: :user
