@@ -17,11 +17,11 @@ class ContactsController < ApplicationController
   end
 
   def show
-      @contact  = Contact.find params[:id]
-      if current_user.email1 != @contact.email
-        flash[:alert] = "Can't show contact information！"
-        redirect_to new_contact_path
-      end
+    @contact  = Contact.find params[:id]
+    if current_user.email1 != @contact.email
+      flash[:alert] = "Can't show contact information！"
+      redirect_to new_contact_path
+    end
   end
 
   def create
@@ -40,16 +40,10 @@ class ContactsController < ApplicationController
   end
 
   def update
-     if can? :admin , current_user
-       @contact  = Contact.find params[:id]
-       @contact.done = true
-         if @contact.save
-           redirect_to contacts_path, notice: "Contact updated"
-         else
-           flash[:alert] = "Can't update"
-           render :index
-         end
-     end
+   if can? :admin , current_user
+     @contact  = Contact.find params[:id]
+     @contact.done = true
+   end
    end
 
   private
