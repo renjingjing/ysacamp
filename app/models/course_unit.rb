@@ -5,6 +5,8 @@ class CourseUnit < ActiveRecord::Base
   has_many  :user_course_units, dependent: :nullify
   has_many  :registed_users, through: :user_course_units, source: :user
 
+  belongs_to :course
+
   def self.search(course_unit)
     search_term = "%#{course_unit}%"
     where(["title ILIKE :term OR description ILIKE :term", {term: search_term}])

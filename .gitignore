@@ -11,3 +11,11 @@
 /log/*
 !/log/.keep
 /tmp
+/config/secrets.yml
+/hemlandcssex
+/untitled folder
+/config/initializers/omniauth.rb
+/config/ex
+/app/views/attendances/update_old_mult_exit.js.erb
+/db/seeds.rb
+/.sass-cache

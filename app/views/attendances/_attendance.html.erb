@@ -1,0 +1,41 @@
+<div class = "well" id = "<%= dom_id(attendance) %>">
+  <p id="notice"><%= notice %></p>
+  <% if @user==current_user || admin_user? %>
+  <div class="panel panel-default">
+  <!-- Default panel contents -->
+    <div class="panel-heading">AttendanceDetails  <%= link_to "show",user_attendance_path(attendance.user,attendance),class:"btn btn-info btn-xs" %></div>
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>AttendanceId</th>
+            <th>Course</th>
+            <th>CourseUnit</th>
+            <th>DateEnrollment</th>
+            <th>Record</th>
+            <th>Credit</th>
+            <th>Postpone</th>
+            <th>Finished</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= attendance.id %></td>
+            <% if attendance.course_unit_id != nil%>
+            <td><%= find_course(attendance.course_unit).name %></td>
+            <td><%= get_attendance_course_unit(attendance.course_unit_id)%></td>
+            <% else %>
+            <td>/</td>
+            <td>/</td>
+            <% end %>
+            <td><%= attendance.date_enrollment %></td>
+            <td><%= attendance.attendanted_record %></td>
+            <td><%= attendance.class_credit %></td>
+            <td><%= attendance.postpone %></td>
+            <td><%= attendance.finished %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>

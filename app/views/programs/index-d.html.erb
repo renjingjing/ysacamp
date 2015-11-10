@@ -1,8 +1,35 @@
 <p id="notice"><%= notice %></p>
 <br>
 <p>Programs >> <%= link_to 'All Programs',programs_path %></p>
-  <div class="well col-md-7">
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Program Name</th>
+      <th>Description</th>
+      <th>Course</th>
+      <% if can? :admin,current_user %>
+      <th colspan="3">Edit Program</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
     <% @programs.each do |program| %>
+<<<<<<< HEAD
+      <tr>
+        <td><%= link_to program.program_name,programs_path(search: program.program_name) %></td>
+        <td><%= program.description %></td>
+          <% courses=program.courses.all %>
+          <% if courses!= nil %>
+            <td>
+                <ul>
+                    <% courses.each do |course| %>
+                    <li><%= link_to course.name,course_path(course) %></li>
+                    <% end %>
+                </ul>
+            </td>
+=======
     <% image_name="/assets/icon-"+"#{program.program_name.delete(' ').downcase}"+".png" %>
       <% if @programs.length==1 %>
       <% @program=program%>
@@ -50,10 +77,20 @@
           <% end %>
             <p class="get_class_li"><%= @program_class %></p>
             </li>
-            <% end %>
+>>>>>>> 8e326aecc6ebffab38b4d0d28518c698d2f67811
+          <% end %>
+        <% if can? :admin, current_user %>
+        <td><%= link_to 'Show', program %></td>
+        <td><%= link_to 'Edit', edit_program_path(program) %></td>
+        <td><%= link_to 'Destroy', program, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-      </ul>
-    </div>
-<%# if can? :admin, current_user %>
-<%#= link_to 'New Program', new_program_path %>
-<%# end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if can? :admin, current_user %>
+<%= link_to 'New Program', new_program_path %>
+<% end %>

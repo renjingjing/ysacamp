@@ -1,7 +1,13 @@
-<% if @user == current_user %>
-  <h3><%= @user.full_name %> !  This is your information detail.</h3>
-  <hr>
-  <table >
+<% if @user==current_user || admin_user? %>
+  <h3><%= @user.full_name %> information detail.</h3>
+  <div class="container">
+      <%  @user.registed_units.each do |registed_unit|%>
+        <%= find_course(registed_unit).name %>
+        <li><%= registed_unit.title %></li>
+      <% end %>
+  </div>
+
+  <table class="table">
     <tr>
       <th>Stu ID</th>
       <th>Student Name</th>

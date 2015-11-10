@@ -8,14 +8,16 @@
       <br><br>
   </div>
     <div class="course col-md-7">
+    <% @courses.each do |course| %>
       <ul class="course_big_container col-md-7">
         <li>
-          <p><%= @course.name %></p>
-          <p><%= @course.description %></p>
-          <p><%= @course.note %></p>
+          <p><%= course.name %></p>
+          <p><%= course.description %></p>
+          <p><%= course.note %></p>
           <% if can? :admin, current_user %>
-          <span><%= link_to 'Edit', edit_course_path(@course) %></span>
-          <span><%= link_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          <span><%= link_to 'Show', course %></span>
+          <span><%= link_to 'Edit', edit_course_path(course) %></span>
+          <span><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></span>
           <% end %>
         </li>
       </ul>
@@ -25,16 +27,15 @@
         <div class="arrow_text col-md-9">
         </div>
       </div>
+    <% end %>
     </div>
-    <div class="col-md-5">
+    <div class="well col-md-5">
       <ul class="course">
         <% course_units=CourseUnit.all %>
         <% if course_units!=nil %>
           <% course_units.each do |course_unit| %>
-            <% if @course.name == course_unit.course.name %>
-              <li class="course_unit_container"><%= link_to course_unit.title,course_unit_path(course_unit) %>
+            <li class="course_unit_container"><%= link_to course_unit.title,course_unit_path(course_unit) %>
             <!-- <p class="get_class_li"></p> -->
-            <% end %>
             </li>
           <% end %>
         <% end %>

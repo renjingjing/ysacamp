@@ -2,9 +2,10 @@ class Course < ActiveRecord::Base
   has_many    :programeds, dependent: :destroy
   has_many    :programs, through: :programeds
 
-  has_many    :courseandunits, dependent: :destroy
-  has_many    :course_units,through: :courseandunits
+  # has_many    :courseandunits, dependent: :destroy
+  # has_many    :course_units,through: :courseandunits
 
+  has_many :course_units
   validates :title, presence: true
 
   def self.search(course)
