@@ -18,50 +18,50 @@
 //= require turbolinks
 //= require_tree .
 $(document).ready(function() {
-    // $( "#datepicker_start_day" ).datepicker({
-    //   changeMonth:true,  //月份下拉列表
-    //   changeYear: true,  //月份下拉列表
-    //   defaultDate: "+1w",
-    //   changeMonth: true,
-    //   numberOfMonths: 6,
-    //   showWeek: true,
-    //   firstDay: 1,
-    //   dateFormat:"yy-mm-dd",
-    //   // dayNamesMin:['Sun','Mo','Tu','We','Th','Fr','Sa'],
-    //   onClose: function( selectedDate ) {
-    //     $( "#datepicker_end_day" ).datepicker( "option", "minDate", selectedDate );
-    //   }
-    // });
-    //
-    // $( "#datepicker_end_day" ).datepicker({
-    //   changeMonth:true,  //月份下拉列表
-    //   changeYear: true,  //月份下拉列表
-    //   defaultDate: "+1w",
-    //   changeMonth: true,
-    //   numberOfMonths: 6,
-    //   showWeek: true,
-    //   firstDay: 1,
-    //   dateFormat:"yy-mm-dd",
-    //   // dayNamesMin:['Sun','Mo','Tu','We','Th','Fr','Sa'],
-    //   onClose: function( selectedDate ) {
-    //     $( "#datepicker_start_day" ).datepicker( "option", "maxDate", selectedDate );
-    //   }
-    // });
-    //
-    // $( "#datepicker_date_enrollment" ).datepicker({
-    //   changeMonth:true,  //月份下拉列表
-    //   changeYear: true,  //月份下拉列表
-    //   defaultDate: "+1w",
-    //   changeMonth: true,
-    //   numberOfMonths: 6,
-    //   showWeek: true,
-    //   firstDay: 1,
-    //   dateFormat:"yy-mm-dd",
-    //   // dayNamesMin:['Sun','Mo','Tu','We','Th','Fr','Sa'],
-    //   onClose: function( selectedDate ) {
-    //     $( "#datepicker_date_enrollment" ).datepicker( "option", "minDate", selectedDate );
-    //   }
-    // });
+    $( "#datepicker_start_day" ).datepicker({
+      changeMonth:true,  //月份下拉列表
+      changeYear: true,  //月份下拉列表
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 6,
+      showWeek: true,
+      firstDay: 1,
+      dateFormat:"yy-mm-dd",
+      // dayNamesMin:['Sun','Mo','Tu','We','Th','Fr','Sa'],
+      onClose: function( selectedDate ) {
+        $( "#datepicker_end_day" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+
+    $( "#datepicker_end_day" ).datepicker({
+      changeMonth:true,  //月份下拉列表
+      changeYear: true,  //月份下拉列表
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 6,
+      showWeek: true,
+      firstDay: 1,
+      dateFormat:"yy-mm-dd",
+      // dayNamesMin:['Sun','Mo','Tu','We','Th','Fr','Sa'],
+      onClose: function( selectedDate ) {
+        $( "#datepicker_start_day" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+
+    $( "#datepicker_date_enrollment" ).datepicker({
+      changeMonth:true,  //月份下拉列表
+      changeYear: true,  //月份下拉列表
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 6,
+      showWeek: true,
+      firstDay: 1,
+      dateFormat:"yy-mm-dd",
+      // dayNamesMin:['Sun','Mo','Tu','We','Th','Fr','Sa'],
+      onClose: function( selectedDate ) {
+        $( "#datepicker_date_enrollment" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
 
     // flash notice and alert click fadeOut
     $(".notice").on("click",function(){
