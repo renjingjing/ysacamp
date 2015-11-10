@@ -15,7 +15,6 @@
 
 // You may include any languages (optional)
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 $(document).ready(function() {
     $( "#datepicker_start_day" ).datepicker({
@@ -194,14 +193,40 @@ $(document).ready(function() {
     //   console.log( $(this).attr('style') );
     // });
 
-    $(".program_container").on('click',function(e){
-      e.preventDefault();
+
+    // $(".program_container").on('click',function(e){
+    //   e.preventDefault();
+    //   console.log("hey");
+    //   $(".program_container").css('background-color','white').next("#arrow_container").hide();;
+    //   var program=$(this).find(".program_name").html().split(' ').join('');
+    //   $(this).css('background-color','rgba(238, 169, 39, 0.6)');
+    //   $('.arrow').addClass('test');
+    //   $(this).closest('.program_container');
+    //   $(this).next('#arrow_container').show();
+    //   $(".get_class_li").each(function(){
+    //     var course_all=$(this).html();
+    //     // console.log(course_all);
+    //     if (course_all.search(program)!=-1) {
+    //       $(this).parent().attr('disabled', false).css('background-color','rgba(238, 169, 39, 0.6)');
+    //       $(this).parent().find('a').unbind('click', false);
+    //     }else{
+    //       // $(this).parent().attr('disable','disabled');
+    //       $(this).parent().attr("disabled","disabled").css('background-color','white');
+    //       $(this).parent().find('a').bind('click', false);
+    //       // $(this).siblings().removeAttr('disabled');
+    //     }
+    //   });
+    // });
+
+    $(".program_container").on('click',function(){
+      // e.preventDefault();
+      // console.log('pro_id');
       var pro_id='#'+$(this).attr('id');
       highlight_p_c(pro_id);
     });
 
     var highlight_p_c=function(pro_id){
-      console.log(pro_id);
+      // console.log(pro_id);
       $(".program_container").css('background-color','white').next("#arrow_container").hide();
       // var program=$(pro_id).find(".program_name").html().split(' ').join('');
       $(pro_id).css('background-color','rgba(238, 169, 39, 0.6)');

@@ -1,0 +1,5 @@
+alert("successfully update");
+$(".close").click();
+$(".showtimetable").children().remove();
+$(".modal-backdrop").removeClass("in");
+$(".showtimetable").prepend("<%= j render '/classtimetables/showtimetable' , classtimetable:@attendance.classtimetable %>");

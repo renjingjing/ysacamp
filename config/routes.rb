@@ -6,15 +6,29 @@ Rails.application.routes.draw do
   resources :course_units
   resources :courses
   root 'homes#index'
-  resources :programs
-  resources :users
   get({"/about" => "about#index"})
+  resources :programs
+
+  resources :users do
+    resources :attendances
+  end
+
+  resources :attendancebooks
+  get "/search_by_first_name/attendancebooks" => "attendancebooks#search_by_first_name"
+  get "/to_day/attendancebooks" => "attendancebooks#to_day"
+
+  resources :password_resets,only:[:new,:create,:edit,:update]
+
   resources :sessions, only: [:new, :create] do
     # this will create for us a route with DELETE http verb and /sessions
     # adding the on: :collection option will make it part of the routes for
     # sessions which means it won't prepend the routes with /sessions/:session_id
     delete :destroy, on: :collection
   end
+
+  get "callbacks/index"
+  get "/auth/twitter", as: :sign_in_with_twitter
+  get "/auth/:provider/callback" => "callbacks#index"
 
   resources :contacts
 

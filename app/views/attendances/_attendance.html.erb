@@ -1,6 +1,5 @@
 <div class = "well" id = "<%= dom_id(attendance) %>">
   <p id="notice"><%= notice %></p>
-  <% if @user==current_user || admin_user? %>
   <div class="panel panel-default">
   <!-- Default panel contents -->
     <div class="panel-heading">AttendanceDetails  <%= link_to "show",user_attendance_path(attendance.user,attendance),class:"btn btn-info btn-xs" %></div>
@@ -38,4 +37,3 @@
       </table>
     </div>
   </div>
-<% end %>

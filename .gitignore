@@ -19,3 +19,7 @@
 /app/views/attendances/update_old_mult_exit.js.erb
 /db/seeds.rb
 /.sass-cache
+/app/views_old
+/db_old
+/config_old
+/controllers_old

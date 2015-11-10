@@ -3,10 +3,11 @@ class CreateClasstimetables < ActiveRecord::Migration
     create_table :classtimetables do |t|
       t.time :start_time
       t.time :end_time
-      t.datetime :day
+      t.datetime :star_day
+      t.datetime :end_day
       t.string :weekday
       t.string :month
-      t.string :year
+      t.integer :times_per_week
 
       t.timestamps null: false
     end

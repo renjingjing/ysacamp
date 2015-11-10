@@ -1,39 +1,68 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Classtimetables</h1>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Listing Classtimetables</div>
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>StartTime</th>
+          <th>EndTime</th>
+          <th>Mins/C</th>
+          <th>StartDay</th>
+          <th>EndDay</th>
+          <th>Times/U</th>
+          <th>Weekdays</th>
+          <th>Times/W</th>
+          <th>Classdays</th>
+          <th colspan="3">Edit</th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Start day</th>
-      <th>End day</th>
-      <th>Weekday</th>
-      <th>Month</th>
-      <th>times_per_week</th>
-      <th colspan="3">Edit</th>
-    </tr>
-  </thead>
+      <tbody>
+        <% @classtimetables.each do |classtimetable| %>
+          <tr>
+            <!-- formatted_time in application-helpers only get time of a day -->
+            <td><%= formatted_time(classtimetable.start_time) %></td>
+            <td><%= formatted_time(classtimetable.start_time+(classtimetable.minutes_per_class/60).hours) %></td>
+            <td><%= classtimetable.minutes_per_class %></td>
+            <td><%= formatted_date_short(classtimetable.start_day) %></td>
+            <td><%= formatted_date_short(get_class_day(classtimetable.start_day,classtimetable.weekdays,classtimetable.unit_class_times).slice(-1)) %></td>
+            <td><%= classtimetable.unit_class_times %></td>
+            <td><%= show_weekdays(classtimetable.weekdays) %></td>
+            <td><%= times_perweek(classtimetable.weekdays) %></td>
+            <td id = "show_class_days">
+                <%  if classtimetable.class_days !=nil %>
+                <p ><i class="fa fa-list-alt fa-2x"></i><i class="fa fa-mouse-pointer"></i></p>
+                <div id = "pop-up">
+                    <% count=1 %>
+                    <% classtimetable.class_days.split(";").each do |f| %>
+                      <% if count != 7 %>
+                        <%= "#{count}"+" : "+"#{f}" %>
+                      <% else %>
+                        <br>
+                        <%= "#{count}"+" : "+"#{f}" %>
+                      <% end %>
+                    <% count += 1 %>
+                    <% end %>
+                </div>
+                <% else %>
+                <p ><i class="fa fa-list-alt fa-2x" style="opacity:0.4"></i><i class="fa fa-mouse-pointer" style="opacity:0.4"></i></p>
+                <% end %>
+            </td>
+            <td>  <%= link_to 'show', classtimetable_path(classtimetable),class:"btn btn-info btn-xs" %>
+            <% if can? :admin, current_user %>
+              <%#= link_to 'Edit', edit_classtimetable_path(classtimetable) %>
+              <%= link_to 'Destroy', classtimetable, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger btn-xs" %>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
 
-  <tbody>
-    <% @classtimetables.each do |classtimetable| %>
-      <tr>
-        <td><%= formatted_time(classtimetable.start_time) %></td>
-        <td><%= formatted_time(classtimetable.end_time) %></td>
-        <td><%= formatted_date(classtimetable.start_day) %></td>
-        <td><%= formatted_date(classtimetable.end_day) %></td>
-        <td><%= classtimetable.weekday %></td>
-        <td><%= classtimetable.month %></td>
-        <td><%= classtimetable.times_per_week %></td>
-        <td><%= link_to 'Show', classtimetable %></td>
-        <td><%= link_to 'Edit', edit_classtimetable_path(classtimetable) %></td>
-        <td><%= link_to 'Destroy', classtimetable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+<% if can? :admin, current_user %>
 <%= link_to 'New Classtimetable', new_classtimetable_path %>
+<% end %>

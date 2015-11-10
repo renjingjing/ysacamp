@@ -1,0 +1,57 @@
+<% if classtimetable!=nil %>
+<div class="row">
+<!-- <div class="well"> -->
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Listing Classtimetables</div>
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>StartTime</th>
+            <th>EndTime</th>
+            <th>Mins/C</th>
+            <th>StartDay</th>
+            <th>EndDay</th>
+            <th>Times/U</th>
+            <th>Weekdays</th>
+            <th>Times/W</th>
+            <th>Classdays</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <!-- formatted_time in application-helpers only get time of a day -->
+            <td><%= formatted_time(classtimetable.start_time) %></td>
+            <td><%= formatted_time(get_end_time(classtimetable.start_time,classtimetable.minutes_per_class)) %></td>
+            <td><%= classtimetable.minutes_per_class %></td>
+            <td><%= formatted_date_short(classtimetable.start_day) %></td>
+            <td><%= formatted_date_short(get_class_day(classtimetable.start_day,classtimetable.weekdays,classtimetable.unit_class_times).slice(-1)) %></td>
+            <td><%= classtimetable.unit_class_times %></td>
+            <td><%= show_weekdays(classtimetable.weekdays) %></td>
+            <td><%= times_perweek(classtimetable.weekdays) %></td>
+            <td id = "show_class_days">
+                <%  if classtimetable.class_days !=nil %>
+                <p ><i class="fa fa-list-alt fa-2x"></i><i class="fa fa-mouse-pointer"></i></p>
+                <div id = "pop-up">
+                    <% count=1 %>
+                    <% classtimetable.class_days.split(";").each do |f| %>
+                      <% if count != 7 %>
+                        <%= "#{count}"+" : "+"#{f}" %>
+                      <% else %>
+                        <br>
+                        <%= "#{count}"+" : "+"#{f}" %>
+                      <% end %>
+                    <% count += 1 %>
+                    <% end %>
+                </div>
+                <% else %>
+                <p ><i class="fa fa-list-alt fa-2x" style="opacity:0.4"></i><i class="fa fa-mouse-pointer" style="opacity:0.4"></i></p>
+                <% end %>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+<% end %>

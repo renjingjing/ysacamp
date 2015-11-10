@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<br>
+<p>Programs >> <%= link_to 'All Programs',programs_path %></p>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Program Name</th>
+      <th>Description</th>
+      <th>Course</th>
+      <% if can? :admin,current_user %>
+      <th colspan="3">Edit Program</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @programs.each do |program| %>
+      <tr>
+        <td><%= link_to program.program_name,programs_path(search: program.program_name) %></td>
+        <td><%= program.description %></td>
+          <% courses=program.courses.all %>
+          <% if courses!= nil %>
+            <td>
+                <ul>
+                    <% courses.each do |course| %>
+                    <li><%= link_to course.name,course_path(course) %></li>
+                    <% end %>
+                </ul>
+            </td>
+          <% end %>
+        <% if can? :admin, current_user %>
+        <td><%= link_to 'Show', program %></td>
+        <td><%= link_to 'Edit', edit_program_path(program) %></td>
+        <td><%= link_to 'Destroy', program, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if can? :admin, current_user %>
+<%= link_to 'New Program', new_program_path %>
+<% end %>

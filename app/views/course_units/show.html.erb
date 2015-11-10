@@ -1,14 +1,4 @@
 <p id="notice"><%= notice %></p>
-<<<<<<< HEAD
-<p>
-  <% courses=@course_unit.courses.all %>
-  <% if courses!= nil %>
-      <% courses.each do |course| %>
-      <h4>Course: <%= link_to course.name,courses_path(search: course.name, order: "id") %></nobr></h4>
-      <% end %>
-  <% end %>
-</p>
-=======
 <div class="well">
   <p>
     <%# courses=@course_unit.course.all %>
@@ -24,35 +14,10 @@
     <strong>Title:</strong>
     <%= @course_unit.title %>
   </h4>
->>>>>>> 8e326aecc6ebffab38b4d0d28518c698d2f67811
-
-  <p>
-    <strong>Description:</strong>
-    <%= @course_unit.description %>
-  </p>
-
-  <p>
-    <strong>Note:</strong>
-    <%= @course_unit.note %>
-  </p>
-
-<<<<<<< HEAD
-<p>
-  <strong>Class Times:</strong>
-  <%= @course_unit.class_times %>
-</p>
-
-<p>
-  <strong>Class Hour(s):</strong>
-  <%= @course_unit.class_hour %>
-</p>
-=======
   <% if can? :admin,current_user %>
     <%= link_to 'Edit', edit_course_unit_path(@course_unit) , class:'btn btn-primary' %> |
     <%= link_to 'Back', course_units_path , class:'btn btn-primary' %>
   <% end %>
->>>>>>> 8e326aecc6ebffab38b4d0d28518c698d2f67811
-
 </div>
 
 <div class="well">

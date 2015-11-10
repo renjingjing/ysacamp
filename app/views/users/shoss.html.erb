@@ -1,0 +1,75 @@
+<% if user_signed_in? || @user.admin %>
+  <h3><%= @user.full_name %> !  This is your information detail.</h3>
+  <hr>
+  <table class="table">
+    <tr>
+      <th>Stu ID</th>
+      <th>Student Name</th>
+      <th>Age</th>
+      <th>Parent Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Registed Course Info</th>
+    </tr>
+    <tr>
+      <td><%= @user.student_id %></td>
+      <td><%= @user.full_name %></td>
+      <td><%= @user.age %></td>
+      <td><%= @user.parent_name %></td>
+      <td><%= @user.email1 %></td>
+      <td><%= @user.cell_phone %></td>
+      <td><%= @user.id%></td>
+      <%# end %>
+    </tr>
+  </table>
+<br>
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Add a new attendance
+  </button>
+  <!-- <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal" id="attendance">Add a new attendance</button> -->
+    <h2>Attendances</h2>
+      <div class="attendances">
+        <% attendances = Attendance.where(user_id: @user.id) %>
+        <% attendances.each do |attendance| %>
+          <%= render "/attendances/attendance", attendance: attendance %>
+          </div>
+          <br>
+        <% end %>
+      </div>
+<% end %>
+
+      <!-- this pop up a new attendance form to fill -->
+    <% byebug %>
+    <%=simple_form_for new_user_attendance_path(@user,Attendance.new),remote: true do |f| %>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" >
+        <!-- role="document" -->
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-attendanted_record" id="myModalLabel">New Atendance</h4>
+          </div>
+
+          <div class="modal-body" id="new_form">
+              <div id="new_attendance">
+              <%= render "/attendances/form", user:@user %>
+                    <!-- <%= f.input :attendanted_record %>
+                    <%= f.input :date_enrollment %>
+                    <%= f.input :class_credit %>
+                    <%= f.input :postpone %>
+                    <%= f.input :finished %>
+                    <%= f.input :note %>
+                    <%= f.input :course_unit_id %>
+                    <% byebug %> -->
+
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" id="new_attendance_close" >Close</button>
+                <%#= f.submit :submit, class: "btn btn-primary",id:"submit_new_attendance" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>

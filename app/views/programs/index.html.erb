@@ -1,7 +1,12 @@
 <p id="notice"><%= notice %></p>
 <br>
-<p>Programs >> <%= link_to 'All Programs',programs_path %></p>
-  <div class="well col-md-7">
+<div class="container well">
+  <% if can? :admin, current_user %>
+  <%= link_to 'New Program', new_program_path %>
+  <% end %>
+
+  <p>Programs >> <%= link_to 'All Programs',programs_path %></p>
+    <div class="program col-md-7">
     <% @programs.each do |program| %>
     <% image_name="/assets/icon-"+"#{program.program_name.delete(' ').downcase}"+".png" %>
       <% if @programs.length==1 %>
@@ -50,10 +55,8 @@
           <% end %>
             <p class="get_class_li"><%= @program_class %></p>
             </li>
-            <% end %>
+          <% end %>
         <% end %>
       </ul>
     </div>
-<%# if can? :admin, current_user %>
-<%#= link_to 'New Program', new_program_path %>
-<%# end %>
+</div>

@@ -6,7 +6,7 @@
   <% end %>
 
 
-    <div class="program col-md-8">
+  <div class="program col-md-7">
     <% @courses.each do |course| %>
     <!-- <%# image_name="/assets/icon-"+"#{course.programs.program_name.delete(' ').downcase}"+".png" %> -->
       <% if @courses.length==1 %>
@@ -35,7 +35,7 @@
       </div>
     <% end %>
     </div>
-    <div class="well col-md-4">
+    <div class="well col-md-5">
       <ul class="course">
         <% course_units=CourseUnit.all %>
         <% if course_units!=nil %>
@@ -59,4 +59,4 @@
         <% end %>
       </ul>
     </div>
-</div>
+ </div>

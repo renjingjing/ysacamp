@@ -27,9 +27,9 @@
     <% count=0  %>
 
 
-  <table >
+  <table class="table">
     <tr>
-      <th>OR</th>
+      <th>User id</th>
       <th>Stu ID</th>
       <th>Student Name</th>
       <th>Age</th>
@@ -38,10 +38,10 @@
       <th>Phone</th>
       <!-- <th>Level</th>
       <th>Class</th> -->
-      <!-- <th>R_Time</th> -->
+      <th>RegistDay</th>
       <!-- <th>Note</th> -->
-      <th>EDIT INFO</th>
       <th>Registed Course Info</th>
+      <th>EDIT INFO</th>
     </tr>
       <% @users.each do |q| %>
       <tr>
@@ -54,24 +54,21 @@
         <td><%= q.cell_phone %></td>
         <!-- <td><%#= q.grade %></td>
         <td><%#= q.school %></td> -->
-        <!-- <td><%#= q.registration_time %></td> -->
-        <!-- <td><%#= q.note %></td> -->
+        <td><%= q.registration_time %></td>
         <td>
+          <%  q.registed_units.each do |registed_unit|%>
+          <ul>
+            <li><%= find_course(registed_unit).name %></li>
+            <li><%= registed_unit.title %></li>
+          </ul>
+          <% end unless q.registed_units.length == 0 %>
+        </td>
+
+        <td>
+          <%= link_to "S", user_path(q), data: {confirm: "Are you sure?"}, class: "btn-xs btn-info aline" %>
           <%= link_to "U", edit_user_path(q), data: {confirm: "Are you sure?"}, class: "btn-xs btn-info aline" %>
           <%= link_to "D", user_path(q),data: {confirm: "Are you sure?"}, method: :delete, class: "btn-xs btn-danger aline" %>
         </td>
-        <% registedunits = q.registed_units %>
-        <% if registedunits != nil %>
-        <td>
-          <% registedunits.each do |registedunit| %>
-          <li>class_times: <%= registedunit.title %></li>
-          <dl>
-            <dd>  --class_times: <%= registedunit.class_times %></dd>
-            <dd>  --class_hour(s): <%= registedunit.class_hour %></dd>
-          </dl>
-          <% end %>
-        </td>
-        <% end %>
       </tr>
       <% end %>
   </table>

@@ -25,6 +25,7 @@ class ClasstimetablesController < ApplicationController
   # POST /classtimetables.json
   def create
     @classtimetable = Classtimetable.new(classtimetable_params)
+    @classtimetable.class_days = get_class_day(@classtimetable.start_day,@classtimetable.weekdays,@classtimetable.unit_class_times).join(";")
     respond_to do |format|
       if @classtimetable.save
         format.html { redirect_to @classtimetable, notice: 'Classtimetable was successfully created.' }
@@ -39,6 +40,7 @@ class ClasstimetablesController < ApplicationController
   # PATCH/PUT /classtimetables/1
   # PATCH/PUT /classtimetables/1.json
   def update
+    @classtimetable.class_days = get_class_day(@classtimetable.start_day,@classtimetable.weekdays,@classtimetable.unit_class_times).join(";")
     respond_to do |format|
       if @classtimetable.update(classtimetable_params)
         format.html { redirect_to @classtimetable, notice: 'Classtimetable was successfully updated.' }
@@ -68,6 +70,12 @@ class ClasstimetablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def classtimetable_params
-      params.require(:classtimetable).permit(:start_time, :end_time, :start_day, :end_day,:weekday, :month, :times_per_week)
+      params.require(:classtimetable).permit(:start_time,
+                                      :start_day,
+                                      :unit_class_times,
+                                      :minutes_per_class).tap do |whitelisted|
+                                      whitelisted[:weekdays] = params[:classtimetable][:weekdays].reject!{|a| a==""}
+                                      # this reject trime the "" items from weekdays array
+    end
     end
 end

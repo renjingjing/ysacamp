@@ -1,39 +1,32 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
 
-<p>
-  <strong>Start time:</strong>
-  <%= @classtimetable.start_time %>
-</p>
+<%= render "showtimetable", classtimetable:@classtimetable%>
 
-<p>
-  <strong>End time:</strong>
-  <%= @classtimetable.end_time %>
-</p>
+<% if can? :admin, current_user %>
+  <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#editclasstimetable" id="edit_classtimetable_button" >Edit Classtimetable</button>
+  <%= link_to 'Destroy', classtimetable_path(@classtimetable), method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger btn-md" %>
+<% end %>
+  <%= link_to 'show all classtimetables', classtimetables_path,class:"btn btn-info btn-md" %>
+</div>
 
-<p>
-  <strong>Start day:</strong>
-  <%= @classtimetable.start_day %>
-</p>
-
-<p>
-  <strong>End day:</strong>
-  <%= @classtimetable.end_day %>
-</p>
-
-<p>
-  <strong>Weekday:</strong>
-  <%= @classtimetable.weekday %>
-</p>
-
-<p>
-  <strong>Month:</strong>
-  <%= @classtimetable.month %>
-</p>
-
-<p>
-  <strong>Times_per_week:</strong>
-  <%= @classtimetable.times_per_week %>
-</p>
-
-<%= link_to 'Edit', edit_classtimetable_path(@classtimetable) %> |
-<%= link_to 'Back', classtimetables_path %>
+<!-- this pop up a new attendance form to fill -->
+<div id="editclasstimetable" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Classtimetable</h4>
+      </div>
+      <div class="modal-body" id="edit_classtimetable_form">
+        <div id="edit_classtimetable">
+        <%= render "form" %>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="edit_classtimetable_close" >Close</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
