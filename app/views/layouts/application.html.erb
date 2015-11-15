@@ -11,18 +11,20 @@
 
 </head>
 <body>
-  <div class="container">
-    <%= render "/layouts/nav" %>
+  <div class="container window-body">
+    <div class="container">
+      <%= render "/layouts/nav" %>
 
-    <% if flash[:notice] %>
-      <div class="alert alert-success" role="alert"><%= flash[:notice] %><i style="float:right" class="notice">x</i></div>
-    <% elsif flash[:alert] %>
-      <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
-    <% end %>
-    <%= yield %>
-  </div>
-  <div class="container">
-    <%= render "/layouts/footer" %>
+      <% if flash[:notice] %>
+        <div class="alert alert-success" role="alert"><%= flash[:notice] %><i style="float:right" class="notice">x</i></div>
+      <% elsif flash[:alert] %>
+        <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
+      <% end %>
+      <%= yield %>
+    </div>
+    <div class="container">
+      <%= render "/layouts/footer" %>
+    </div>
   </div>
 </body>
 </html>

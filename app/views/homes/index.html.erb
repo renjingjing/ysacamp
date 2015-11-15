@@ -11,19 +11,19 @@
     <div class="item active">
       <%=  image_tag("2526x930banner8game.jpg", :height => 600, class: "img-responsive") %>
       <div class="carousel-caption">
-          <h3></h3>
+          <h3 class="home_program_name_color"></h3>
       </div>
     </div>
     <div class="item">
       <%=  image_tag("2526x930banner8creation.jpg", :height => 600, class: "img-responsive") %>
       <div class="carousel-caption">
-          <h3></h3>
+          <h3 class="home_program_name_color"></h3>
       </div>
     </div>
     <div class="item">
       <%=  image_tag("2526x930banner10degree.jpg", :height => 600, class: "img-responsive") %>
       <div class="carousel-caption">
-          <h3></h3>
+          <h3 class="home_program_name_color"></h3>
       </div>
     </div>
   </div>
@@ -45,38 +45,82 @@
 
     <div class="col-md-4 guide-gap">
         <div class="thumbnail guide-container">
-          <div class="golden-div">
-            <%=  image_tag("icon-startup.png",class:"welcome_pic_3") %>
-            <div class="caption">
-              <h3>Startup</h3>
+          <div class="golden-container">
+            <div class="golden-div">
+              <div class="caption">
+                <h3 class="home_program_name_color">Startup</h3>
+              </div>
+              <%=  image_tag("icon-startup.png",class:"welcome_pic_3 golden-image") %>
+            </div>
+            <div class="golden-div-hover">
+                Startup organization is one of the greatest forms to make the world a better place.
+                If you take a group of people with the right equity incentives and organize them in a startup,
+                you can unlock human potential in a way never before possible.
+                You get them to achieve unbelievable things.
+                --Bill Gross
             </div>
           </div>
-            <p><a href="#" class="btn btn-primary btn-lg"> More Info </a></p>
+              <p><%= link_to "More Info",programs_path(search: 'Start Up'),class:"btn btn-primary btn-lg home_button_green" %></p>
         </div>
     </div>
 
     <div class="col-md-4 guide-gap">
         <div class="thumbnail guide-container">
-          <div class="golden-div">
-            <%=  image_tag("icon-technologies.png",class:"welcome_pic_3") %>
-            <div class="caption">
-                <h3>Technologies</h3>
+          <div class="golden-container">
+            <div class="golden-div">
+              <div class="caption">
+                  <h3 class="home_program_name_color">Technologies</h3>
+              </div>
+              <%=  image_tag("icon-technologies.png",class:"welcome_pic_3 golden-image") %>
+            </div>
+            <div class="golden-div-hover">
+              <!-- <h3 class="home_program_name_color" >Technologies</h3> -->
+              Understanding computer science has become increasingly important for children.
+              Learning coding not only for those children who want to learn computer science in feature or
+              pursue careers as programmers, but also for those who want to jump into other fields, which are
+              becoming more and more entangled with and influenced by technology.Click "More Info" >>learning in YSA Camp.
             </div>
           </div>
-            <p><a href="#" class="btn btn-primary btn-lg">More Info</a></p>
+            <p><%= link_to "More Info",programs_path(search: 'Technologies'),class:"btn btn-primary btn-lg home_button_green" %></p>
         </div>
     </div>
 
 
     <div class="col-md-4 guide-gap">
         <div class="thumbnail guide-container">
-          <div class="golden-div">
-            <%=  image_tag("icon-leadership.png",class:"welcome_pic_3") %>
-            <div class="caption">
-                <h3>Leadership</h3>
+          <div class="golden-container">
+            <div class="golden-div">
+              <div class="caption">
+                  <h3 class="home_program_name_color">Leadership</h3>
+              </div>
+              <%=  image_tag("icon-leadership.png",class:"welcome_pic_3 golden-image") %>
             </div>
+            <div class="golden-div-hover">
+                  <!-- <h3 class="home_program_name_color">Leadership</h3> -->
+                  The leadership of the children can be developed during coding with a team.
+                  <br><br>
+                  <table class="table_no_border">
+                    <tbody>
+                      <tr>
+                        <td>Planing</td>
+                      <td>Collaboration</td>
+                      <td>Communication</td>
+                    </tr>
+                    <tr>
+                      <td>Strategy</td>
+                      <td>Organization</td>
+                      <td>Competition</td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">Persistence...</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br>
+                You can learn more about leadership.
+              </div>
           </div>
-            <p><a href="#" class="btn btn-primary btn-lg">More Info</a></p>
+            <p><%= link_to "More Info",programs_path(search: 'Leadership'),class:"btn btn-primary btn-lg home_button_green" %></p>
         </div>
     </div>
 </div>
@@ -85,35 +129,59 @@
 
     <div class="col-md-4 guide-gap">
         <div class="thumbnail guide-container">
-          <div class="golden-div">
-            <%=  image_tag("icon-ysakids.png",class:"welcome_pic_3") %>
-            <div class="caption">
-                <h3>YSA Kids</h3>
+          <div class="golden-container">
+            <div class="golden-div">
+              <div class="caption">
+                  <h3 class="home_program_name_color">YSA Kids</h3>
+              </div>
+              <%=  image_tag("icon-ysakids.png",class:"welcome_pic_3 golden-image") %>
+            </div>
+            <div class="golden-div-hover">
+              <!-- <%#=  image_tag("icon-ysakids.png",class:"welcome_pic_3 golden-image") %> -->
+              <div class="caption">
+                  <!-- <h3 class="home_program_name_color">YSA Kids</h3> -->
+              </div>
             </div>
           </div>
-            <p><a href="#" class="btn btn-primary btn-lg">More Info</a></p>
+               <p><%= link_to "More Info",programs_path(search: 'YSA Kids'),class:"btn btn-primary btn-lg home_button_green" %></p>
         </div>
     </div>
     <div class="col-md-4 guide-gap">
         <div class="thumbnail guide-container">
-          <div class="golden-div">
-          <%=  image_tag("icon-ysateens.png",class:"welcome_pic_3") %>
-            <div class="caption">
-                <h3>YSA Teens</h3>
+          <div class="golden-container">
+            <div class="golden-div">
+              <div class="caption">
+                  <h3 class="home_program_name_color">YSA Teens</h3>
+              </div>
+              <%=  image_tag("icon-ysateens.png",class:"welcome_pic_3 golden-image") %>
+            </div>
+            <div class="golden-div-hover">
+              <!-- <%#=  image_tag("icon-ysateens.png",class:"welcome_pic_3 golden-image") %> -->
+              <div class="caption">
+                  <!-- <h3 class="home_program_name_color">YSA Teens</h3> -->
+              </div>
             </div>
           </div>
-            <p><a href="#" class="btn btn-primary btn-lg">More Info</a></p>
-        </div>
+              <p><%= link_to "More Info",programs_path(search: 'YSA Teens'),class:"btn btn-primary btn-lg home_button_green" %></p>
+          </div>
     </div>
     <div class="col-md-4 guide-gap">
         <div class="thumbnail guide-container">
-          <div class="golden-div">
-            <%=  image_tag("icon-ysahandyman.png",class:"welcome_pic_3") %>
-            <div class="caption">
-                <h3>YSA Handyman</h3>
+          <div class="golden-container">
+            <div class="golden-div">
+              <div class="caption">
+                  <h3 class="home_program_name_color">YSA Handyman</h3>
+              </div>
+              <%=  image_tag("icon-ysahandyman.png",class:"welcome_pic_3 golden-image") %>
+            </div>
+            <div class="golden-div-hover">
+              <!-- <%#=  image_tag("icon-ysahandyman.png",class:"welcome_pic_3 golden-image") %> -->
+              <div class="caption">
+                  <!-- <h3 class="home_program_name_color">YSA Handyman</h3> -->
+              </div>
             </div>
           </div>
-            <p><a href="#" class="btn btn-primary btn-lg">More Info</a></p>
-        </div>
+              <p><%= link_to "More Info",programs_path(search: 'YSA Handyman'),class:"btn btn-primary btn-lg home_button_green" %></p>
+          </div>
     </div>
 </div>

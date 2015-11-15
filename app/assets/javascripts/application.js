@@ -167,56 +167,15 @@ $(document).ready(function() {
       $('div#pop-up',this).hide();
     });
 
-    // var program_name_id;
-    // $(".program_name_home").on('click',function(){
-    //   var program_id_name=$(this).attr('id');
-    //   // // console.log(programe_id_name);
-    //   // $(".program_container").load(function(){
-    //   //   $(".program_container").each(function(){
-    //   //     console.log(programe_id_name);
-    //   //     console.log($(this).attr('id'));
-    //   // alert("000000");
-    //   // setTimeout(function(){
-    //   //   console.log("-------------");
-    //   //   // // program_name_id='#'+program_id_name;
-    //   //   // // $('.program').find("ul").attr("id", "#startup").addClass('select');
-    //   //   alert("selected");
-    //   // },5000);
-    //   $(".program_container").trigger('click');
-    //   console.log("-------------");
-    //
-    // });
-    //
-    //
-    // $('.program_container').bind('style', function() {
-    //   // e.preventDefault();
-    //   console.log( $(this).attr('style') );
-    // });
+    $(".guide-container").hover(function(){
+      // $(this).find(".golden-div").hide();
+      $(this).find(".golden-div-hover").show();
+    });
 
-
-    // $(".program_container").on('click',function(e){
-    //   e.preventDefault();
-    //   console.log("hey");
-    //   $(".program_container").css('background-color','white').next("#arrow_container").hide();;
-    //   var program=$(this).find(".program_name").html().split(' ').join('');
-    //   $(this).css('background-color','rgba(238, 169, 39, 0.6)');
-    //   $('.arrow').addClass('test');
-    //   $(this).closest('.program_container');
-    //   $(this).next('#arrow_container').show();
-    //   $(".get_class_li").each(function(){
-    //     var course_all=$(this).html();
-    //     // console.log(course_all);
-    //     if (course_all.search(program)!=-1) {
-    //       $(this).parent().attr('disabled', false).css('background-color','rgba(238, 169, 39, 0.6)');
-    //       $(this).parent().find('a').unbind('click', false);
-    //     }else{
-    //       // $(this).parent().attr('disable','disabled');
-    //       $(this).parent().attr("disabled","disabled").css('background-color','white');
-    //       $(this).parent().find('a').bind('click', false);
-    //       // $(this).siblings().removeAttr('disabled');
-    //     }
-    //   });
-    // });
+    $(".guide-container").mouseleave(function(){
+      // $(this).find(".golden-div").show();
+      $(this).find(".golden-div-hover").hide();
+    });
 
     $(".program_container").on('click',function(){
       // e.preventDefault();

@@ -50,71 +50,55 @@ body {
   border-radius: 5px;
   box-shadow: 2px 2px 2px 2px rgba(204, 204, 204, 0.8);
   background-color:rgba(255, 255, 255, 0.6);
-  width:390px;
-  height:480px;
-}
-
-.golden-container{
-  margin-top: 20px;
-  margin-bottom: 30px;
-  border-radius: 2px;
-  box-shadow: 3px 3px 3px rgba(128, 113, 110, 1);
-  width:340px;
-  height:340px;
 }
 
 .golden-div {
-  position:absolute;
-  // z-index:-1;
-  // position: relative;
-  // left:0px;
-  // top:0px;
   text-shadow: 1px 1px 2px gray;
+  margin-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 30px;
   border-radius: 2px;
   box-shadow: 3px 3px 3px rgba(128, 113, 110, 1);
-  width:340px;
-  height:340px;
+  min-width:36px;
+  min-height:320px;
+  // background-color:rgba(255, 204, 79, 0.6);
   background: -webkit-radial-gradient(rgba(255, 204, 79, 0.1), rgba(255, 204, 79, 1)); /* For Safari 5.1 to 6.0 */
   background: -o-radial-gradient(rgba(255, 204, 79, 0.1), rgba(255, 204, 79, 1)); /* For Opera 11.1 to 12.0 */
   background: -moz-radial-gradient(rgba(255, 204, 79, 0.1), rgba(255, 204, 79, 1)); /* For Firefox 3.6 to 15 */
   background: radial-gradient(rgba(255, 204, 79, 0.1), rgba(255, 204, 79, 1)); /* Standard syntax */
 }
 
-.home_program_name_color{
-  position:relative;
-  top:10px;
-  color:black;
-  text-align: center;
-  text-shadow: 2px 3px 3px white;
-}
-
-.golden-image{
-  position: relative;
-  left:auto;
-  top:50px;
-}
-
 .golden-div-hover {
-  position: relative;
-  left:0;
-  top: 0;
+  // background-color: #FFCC4F;
+  // text-shadow: 1px 1px 2px gray;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 30px;
   border-radius: 2px;
-  width:100%;
-  height:100%;
-  background: -webkit-radial-gradient(rgba(94, 187, 228, 1), rgba(94, 187, 228, 0.8)); /* For Safari 5.1 to 6.0 */
-  background: -o-radial-gradient(rgba(94, 187, 228, 1), rgba(94, 187, 228, 0.8)); /* For Opera 11.1 to 12.0 */
-  background: -moz-radial-gradient(rgba(94, 187, 228, 1), rgba(94, 187, 228, 0.8)); /* For Firefox 3.6 to 15 */
-  background: radial-gradient(rgba(94, 187, 228, 1), rgba(94, 187, 228, 0.8)); /* Standard syntax */
-  opacity: 0.8;
+  min-width:36px;
+  min-height:320px;
+  background: -webkit-radial-gradient(rgba(239,180,3, 1), rgba(94, 187, 228, 0.8)); /* For Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(rgba(239,180,3, 1), rgba(94, 187, 228, 0.8)); /* For Opera 11.1 to 12.0 */
+  background: -moz-radial-gradient(rgba(239,180,3, 1), rgba(94, 187, 228, 0.8)); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(rgba(239,180,3, 1), rgba(94, 187, 228, 0.8)); /* Standard syntax */
+  // background: rgba(94, 187, 228, 1);
+  opacity: 0.6;
   display:none;
   -webkit-transition: 1s opacity;
   -o-transition: 1s opacity;
   transition: 1s opacity;
+  box-shadow: 3px 3px 3px rgba(128, 113, 110, 1);
   text-align: left;
   font-size: 16px;
-  padding: 20px;
-  padding-top: 80px;
-  color:white;
+  // font-weight: bold;
+  color:black;
+  text-shadow: 3px 3px 3px white;
 }
 
 .golden-hover-icon{
@@ -125,6 +109,7 @@ body {
   margin-left: 0px;
   margin-right: 0px;
 }
+
 
 .aline{
   display:inline;
@@ -138,6 +123,14 @@ body {
   width:500px;
   height: 400px;
 }
+
+// .btn-primary{
+//   background-color: #2494C5;
+// }
+//
+// .btn-success{
+//   background-color: #FFCC4F;
+// }
 
 .about-form{
   width:800px;
@@ -219,6 +212,7 @@ ul,li.a {
     padding-bottom: 5px;
     height:140px;
     box-shadow: 5px 5px 5px grey;
+    // background-image:url('icon-ysateens.png');
     background-repeat:no-repeat;
     background-size: 60px 60px;
     background-repeat: no-repeat;
@@ -242,9 +236,14 @@ ul,li.a {
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
+    // margin-left: 10px;
+    // margin-right: 10px;
     margin-top: 5px;
     height:40px;
     box-shadow: 5px 5px 2px grey;
+    // filter: alpha(opacity=30);
+    // background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    // background: rgba(238, 169, 39, 0.5);
 }
 
 .course_unit_container{
@@ -258,9 +257,14 @@ ul,li.a {
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
+    // margin-left: 10px;
+    // margin-right: 10px;
     margin-top: 5px;
     height:40px;
     box-shadow: 5px 5px 2px grey;
+    // filter: alpha(opacity=30);
+    // background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    // background: rgba(54, 170, 222, 0.6);
 }
 
 .get_class_li{
@@ -300,6 +304,12 @@ ul,li.a {
   box-shadow: 1px 1px rgba(54, 170, 222, 1);
   border-style: hidden;
   text-shadow: 1px 1px 2px gray;
+}
+
+.home_program_name_color{
+  color:black;
+  text-align: center;
+  text-shadow: 2px 3px 3px white;
 }
 
 .nav a {
